@@ -1,0 +1,102 @@
+Assume data frame 
+name<- c("a1", "b2", "c3")
+group1 <- c(34, 24, 56)
+group2 <- c(78, 78, 34)
+sample_frame<-data.frame(name, group1, group2)
+
+use str fucntion 
+and check type of each column, total numbers of
+columns and number of observations per columns
+Note the default conversion of strings to factors.
+
+Use stringsAsFactors = FALSE as argument to
+data.frame to suppress this and
+keep type as characters.
+
+str(sample_frame)
+sample_frame<-data.frame(name, group1, group2,
+                         stringsAsFactors = FALSE )
+
+
+
+
+
+Assume data frame
+
+sample_frame<-data.frame(SKU=c("SKU_1","SKU_2","SKU_3","SKU_4"),
+                         Base_Price=c(23.73, 19.45, 16.60, 20.33),
+                         Unit_Weight=c(101.76,101.73,99.63,100.82) )
+Use names() and rownames() fucntion to get
+vector of columsn names
+and row names 
+
+
+names(sample_frame)
+rownames(sample_frame)
+
+data frame fucntion assigned order to each row strating from 1.
+
+
+
+
+
+
+
+Assume data frame
+
+sample_frame<-data.frame(c("SKU_1","SKU_2","SKU_3","SKU_4"),
+                         c(23.73, 19.45, 16.60, 20.33),
+                         c(101.76,101.73,99.63,100.82) )
+
+apply names() fucntion to check what
+happe3ns if column names are not specified
+in data frame fucntion 
+
+names() fucntion is representatuive of 
+replacement functions. 
+It can be used to set the names of dataframe, such as
+names(object)<- character vector with column names
+
+Change columns named of sample_frame to SKU, Base_Price,Unit_Weight
+names(sample_frame)<-c("SKU","Base_Price","Unit_Weight")
+sample_frame
+
+
+
+
+
+Assume data frame
+
+sample_frame<-data.frame(c("Record_1","Record_2","Record_3"),
+                         c("Exercise_1","Exercise_2","Exercise_3"),
+                         c("Back","Pectoralis","Quadriceps"),
+                         c(98.74, 100.31, 100.49),row.names=1)
+
+names(sample_frame)<-c("Esxercise","Muscle_Group","Weight_Lifder")
+
+First column of data frame contains actual rows names for 
+sample_frame.
+Use row.names arguemnt to specify what columns to use as
+row names. 
+
+Additionally, use names() to provide meaningfull 
+nmes for data frame columns. 
+
+
+
+Notice that now columsn with records becomes
+row nmes. 
+row.names(sample_frame)
+
+
+
+
+
+
+
+
+
+
+
+
+
