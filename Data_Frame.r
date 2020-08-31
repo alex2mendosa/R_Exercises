@@ -11,6 +11,7 @@ To create a dataframe, use referenced
 vectors as arguments of data.frame() function
 in a form of data.frame(vector_1,vector_2)  
 
+
 db_1&lt;-data.frame(1:5,10:14) 
 
 data.frame() coerces
