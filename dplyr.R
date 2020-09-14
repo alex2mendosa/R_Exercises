@@ -4,13 +4,13 @@ library(dplyr)
 dplyr shoud be installed, while mtcars
 dataset comes with base R vertion.
 
-select fucntion from dplyr allows to 
-specify columns by either order or 
-column names which you want to extract
-from raw dataset.
-Column numner or name shoukld 
+select() function from dplyr allows to 
+specify columns you want to extract
+from raw dataset by either column order or 
+name 
+Columns numbers or names should 
 be separated by comma.
-select(mtcars,1,3 or)
+select(mtcars,1,3)   or
 select(mtcars,mpg,disp)
 No need to wrap column names in quotation marks
 or use $ accessor.
@@ -26,8 +26,8 @@ select(mtcars,mpg,disp,ncol(mtcars) )
 
 # Exercise 2
 
-column names in select can be supplemented with - to 
-indicate what column not ot extract
+column names in select() can be supplemented with - to 
+indicate what column not to extract
 
 select(mtcars,-1,-3,-ncol(mtcars) ) 
 select(mtcars,-mpg,-disp)
@@ -43,80 +43,77 @@ select(mtcars,-cyl,-disp)
 # Exercise 3
 
 Rather than indicating each column by name
-ot order, it is possible to define a range of column to 
-extract via ":" operator.
+or number, it is possible to define a range of columns[blocks] 
+via ":" operator.
 
 select(mtcars,2:5) or 
 
 names(mtcars)
 select(mtcars,cyl:drat)
-select(mtcars,drat:cyl) to reverse
+select(mtcars,drat:cyl) to reverse colums order
 select(mtcars,cyl:hp,5) here we want to extract 
 column specified by : and then column 5.
 
-extract all columns in reverse order
-
+Now use : to extract all columns in reverse order
 select(mtcars,ncol(mtcars):1)
 
 
 # Exercise 4
-Assume we want to relocate first 5 columsn to the end.
-while keppeng order of other columns  intact.
-With select you need to specify what bloch to move via 
-:, and order oall remaining columns.
+We want to relocate first 5 column to the end of data frame.
+while keeping the order of other columns  intact.
+With select() you need to specify what block to move via 
+:, as well as order all remaining columns.
 
-relocate fucntion allows to specify only whqat block to move. 
+relocate() function allows to specify only part 
+of data frame you want to relocate. 
 
-in relocate() we first specify name of data frame, next what column or block to 
+In relocate() we first specify name of data frame, next what block to 
 move,  next we indicate the exact 
-location where chosen  column should be inserted.
+location where chosen  block should be inserted.
 
-If you worked  in excel, the proces is similat to adding columns
-in the middle of table: we first select before and after what columns
-to add new data and after that insert new columns.
 
 names(mtcars)
-relocat operates with 2 argument to read exactinsert location:
+relocate() operates with 2 argument to specify insert location:
   .before, .after.
 
 relocate(mtcars,cyl,.before=mpg)
-Noe second column is placeed before column mpg
+Now second column is placeed before column mpg
 
 relocate(mtcars,mpg:disp,.after=hp)
 
 Now move block from second to 6-th column
 to the end of mtcars
 
+Now relocate block from cyl towt after column carb.
 relocate(mtcars,cyl:wt,.after=carb)
 
 
 # Exercise 5
 
-With dplyr we can subset data
+With dplyr we can subset 
 rows which fit certain conditions.
-Filtering in R generaly is done by forst creating 
-logical vector with TRUE and FALSe values and
-then using it to extract rows of data frame equal to
-logical vector indices for which values is TRUE
+Filtering in R is generaly done by first creating 
+logical vector with same number of rows as data frame and
+then using it to extract rows for which values of 
+logical vector are TRUE.
 
-filter function allows to specify data frame
-and logicar vector to select rows where the 
-values of vector is TRUE.
+filter() function allows to specify both data frame
+and logical vector used for filtering.
 
 filter(mtcars,mpg>20) extract rows for which mpg>20
-Fucntion syntax is similar to subset function.
+Function syntax is similar to subset function.
 
 filter(mtcars,mpg>20 & cyl==6)
 
 We specified 2 conditions.
 Same result can be achieved with
 mtcars[mtcars$mpg>20 & mtcars$cyl==6,], however 
-filter should be preferred as more flexible and faster solution.
+filter() should be preferred as more flexible solution.
 
 Now select records
 where mpg>15, disp>4,hp>=100
-and name manufacturer is no Mazda,
-Hint:grepl("Mazda",row.names(mtcars) ), ! is used to negate logical vector
+and  manufacturer name is no Mazda,
+Hint:grepl("Mazda",row.names(mtcars) ), ! is used to negate logical vector.
 
 filter(mtcars, mpg>15& disp>4 & hp>=100 & !grepl("Mazda",row.names(mtcars) ) )
 
@@ -124,15 +121,15 @@ filter(mtcars, mpg>15& disp>4 & hp>=100 & !grepl("Mazda",row.names(mtcars) ) )
 
 # Exercise 6
 
-Argument of filter fucntion can also be 
-separated via semicolon, actians as AND operator,
+Arguments of filter() functions can also be 
+separated via semicolon, acting as AND operator,
 we should  be caution not to
-include mutually exclusive condition for single colomn.
+include mutually exclusive condition for single column.
 
 filter(mtcars, mpg>15 | mpg <10)  which 
-allowsto use OR operator
+allows to use OR operator.
 filter(mtcars, mpg>15 , mpg <10)  does not produce result 
-as the single value canbe both greater or smaller that 15.
+as the single value can not be both greater or smaller that 15.
 
 Now use semicilon to choose rows where mpg>15 and disp>120
 filter(mtcars, mpg>15 , disp>120)  or
@@ -143,37 +140,33 @@ filter(mtcars, mpg>15 & disp>120)
 # Exercise 7
 
 Common way to extract rows from data frame
-is to use [] with indices
+is to use [] with indices.
 
 mtcars[c(1,2,3),]
 
-dplyr offers slice() fucntion to index rows by their
+dplyr offers slice() functions to extract rows by their
 location. 
 slice(mtcars,c(1,2,5))
-fucntion is quite straigforward.
+function is quite straigforward.
 
-Now extract all rows from 3ord till the last.
-Use nrow fucntion.
+Now extract all rows from 3-rd till the last.
+Use nrow fucntion is possible.
 
 slice(mtcars,1:nrow(mtcars))
-Outpur of slice is data frame.
-
-
-
+Outpur of slice() is also data frame.
 
 
 # Exercise 8
 
-Column from data frame cab be extracted eiter through 
+Columns from data frame can be extracted either through 
 accessor $, or indexing[], mtcars[,2] or mtcars$cyl.
-Same can be done with dplyr pull() fucntion.
-pull(mtcars,2) or pull(mtcars,cyl). pull operator is
+Same can be done with dplyr pull() function.
+pull(mtcars,2) or pull(mtcars,cyl). pull() functions is
 usefull when data manipulation routine includes
 consequtive subsetting and filtering,
 output of which is single column. 
-Patrivularry , it can be organically included in 
-expression sequence connected via %>% operator, disculles
-in part 2. 
+Additionally , it can be naturally included in 
+expressions sequence connected via %>% operator. 
 
 now use pull() function to extract 
 third column via column name and column number.
@@ -185,22 +178,21 @@ pull(mtcars,disp)
 
 # Exercise 9
 
-Common way to sort data in vector is to use order fucntion
-whcih creates vector of indices used to reorder rows,
+Common way to sort data in vector is to use order() function
+which creates vector of indices used to reorder rows,
 order(mtcars$mpg) result in vector of indices which 
 should be applied to mtcars rows.
 
-
-mtcars[order(mtcars$mpg),] Sorts data from lowest mpg to largest
+mtcars[order(mtcars$mpg),] sorts data from lowest mpg to largest.
 
 In dplyr sorting is done via arrange() function, 
-ahich allows to specify columns [variables] to use for sorting.
+which allows to specify columns used for sorting.
 
 arrange(mtcars, mpg)
 
 Now arrange data in mpg both in acsending and descending order.
-descending order is produces when desc fucntion is applied to 
-column name of arrnge fucntion. 
+descending order is produced when desc() fucntions is applied to 
+column name of inside arrange() function. 
 
 arrange(mtcars, disp)
 arrange(mtcars, desc(disp))
@@ -210,23 +202,21 @@ arrange(mtcars, desc(disp))
 
 # Exercise 10
 
-Another useful fucntion from dplyr() can be particularly usefull when 
-data is uploaded from extrnal soure with column 
-names different from names you ant to gein in output  data frame.
+Another function from dplyr() which can be particularly usefull when 
+data is uploaded from external soure with column 
+names different from names you want to see in final result.
 
-
-rename() alows to specify bot  replacement name and colum you want to rename and.
+rename() alows to specify both  replacement name and colum you want to rename.
 
 rename(mtcars,"N. of Carburetors"=carb)
 
-We indicated new name in douvble brackets followed by
-equl sine and column which should be renamed. No assigmemt
-takes place so names in original data fra,e are intact.
-Use semicolon to indicate more than column.
+We indicate new name in double quotations 
+and column that should be renamed. No assigmemt
+takes place, so names in original data frame are intact.
+Use semicolon to indicate multiple arguments.
 
 Now cnahge name of mpg to "Miles per Gallon"
 and wt to "Weight (1000 lbs)"
-
 
 rename(mtcars,"Miles per Gallon"=mpg,"Weight (1000 lbs)"=wt)
 
