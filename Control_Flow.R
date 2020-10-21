@@ -41,8 +41,8 @@ number of choices
 
 BMI has the following gradation:
 >=30 is classifies as Obese
-<=25.0–29.9<=is classifies as overweight
-18.5–24.9<= iis classifies as normal weight
+<=25.0â€“29.9<=is classifies as overweight
+18.5â€“24.9<= iis classifies as normal weight
 bmi=Kg/(height^2),
 heiht is indicates in meters.
 
@@ -111,8 +111,8 @@ dplyr::case_when(
 
  Now use case_when statement to define human BMI 
  >=30 is classifies as Obese
- <=25.0–29.9<=is classifies as overweight
- 18.5–24.9<= iis classifies as normal weight
+ <=25.0â€“29.9<=is classifies as overweight
+ 18.5â€“24.9<= iis classifies as normal weight
  bmi=Kg/(height^2), 
  
 weight=sample_1<-sample(60:90,10,replace = TRUE)   
@@ -233,7 +233,30 @@ Therefore you can nest multinple statemens with ifelse, however
  
  
  
- 
+ # Exercise 9
+
+Condition in choice control flow can be formed by 
+function which results in logical type.
+Assume following vector with products groups
+fmcg_brands<-c("Folgers","Nescafe","Jacobs","Snickers","Milka","Pepsi","Red Bull")
+grepl("Nestle","Nescafe is Nestle Brand") would result in TRUE if
+"Nestle" string is present in sentecne "Nescafe is Nestle Brand"
+
+grepl("Nestle|Pepsi","Nescafe is Nestle Brand") checks if either "Nestle" or "Pepsi"
+are present in in sentecne "Nescafe is Nestle Brand"
+
+Now use grepl and case_when to classify brands in fmcg_brands 
+into groups "Coffee","Confectionery" or "Beverages"
+
+dplyr::case_when(
+  grepl("Nescafe|Folgers|Jacobs",fmcg_brands)==TRUE ~"Coffee",
+  grepl("Snickers|Milka",fmcg_brands)==TRUE ~"Confectionery",
+  grepl("Pepsi|Red Bull",fmcg_brands)==TRUE  ~"Beverages"
+)
+
+Current example is usefull when working with data frames or tibbles 
+whenever we want to introduce additional layer of classification.
+
  
  
  
