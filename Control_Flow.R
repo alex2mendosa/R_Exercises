@@ -1,0 +1,249 @@
+# Exercise 1 
+Control Flow includes statements which define
+output based on specific conditions. 
+We define set of choices to be made based on input data.
+I R choices are mainly defined with if
+statement
+Code Template is represented by:
+if (condition==TRUE) {Action}
+if (condition==TRUE) {Action} else {Alternative}
+
+n varibale contais numner
+define of statment which output
+text of n if odd or even
+Solution
+n<-20
+if (n %% 2!=0) {print("Odd")
+ } else {print("Even")}
+Note that
+n<-20
+if (n %% 2!=0) {print("Odd")} 
+else {print("Even")} 
+
+Will result in error, so as the best practice
+else should remain in separate line
+both with curly brackets which
+separate Main Action and alternative
+
+
+
+# Exercise 2
+
+In previous example we assume
+2 choices, as the continuatuin 
+R allows to define multiple 
+choices and adjust our output to 
+multiple input conditions.
+
+In this case else statamet is replaced
+with multiple else if dependion on 
+number of choices
+
+BMI has the following gradation:
+>=30 is classifies as Obese
+<=25.0–29.9<=is classifies as overweight
+18.5–24.9<= iis classifies as normal weight
+bmi=Kg/(height^2),
+heiht is indicates in meters.
+
+Define control flow which
+accepts as input human parameters and
+outputs bmi classification
+
+BMI<-function(weight,height) {
+  bmi=weight/(height^2)
+  
+  if (bmi<=24.9) {
+    print("Normal Weight")
+  } else if (bmi>=25.0 & bmi<=29.9) {
+    print("Overweight")
+  } else if (bmi>=30) {
+    print("Overweight") 
+  }
+  
+  return(bmi)    }
+  
+BMI(80,1.82)
+
+
+# Exercise 3
+if statement accept signle value as input,
+technically , cndition should have length 1,
+for example 
+if ( c(2,3)>5 ) {print("Ok")} will result in error
+as c(2,3) forms a vactor of lenght 2.
+to apply if statemt to vector
+ifelse statemtn can be employed.
+
+x=(rnorm(20,10,2))
+print(x)
+ifelse(x>10,"Values Over Mean","Values Below or equal to Mean")
+
+Now , given the sequence
+check with ifelse if value is odd or even
+
+# Solution
+sample_1<-sample(1:20,10,replace = TRUE)
+ifelse(sample_1 %% 2==0, "Even","Odd" )
+
+Use ifelse is usefull when the result
+forms binary variable, if operation 
+requires vector as input and considers
+more than 2 possible outcomes alternative
+contrl flow function shouls be considered
+
+# Exercise 4
+
+dplyr package offers fucntion case_when
+which alloes vectorised operations and
+allows to consider multiple conditions 
+,each which uniqu outcome.
+Fucntion is similare to Case when statemnt in SQL.
+
+Going back to example to even and uneven numbers ,
+we can  rewrite it using case_when:
+
+sample_1<-sample(1:20,10,replace = TRUE)    
+dplyr::case_when(
+   sample_1 %% 2==0 ~ "Even",  
+   sample_1 %% 2!=0 ~ "Odd" 
+)
+
+ Now use case_when statement to define human BMI 
+ >=30 is classifies as Obese
+ <=25.0–29.9<=is classifies as overweight
+ 18.5–24.9<= iis classifies as normal weight
+ bmi=Kg/(height^2), 
+ 
+weight=sample_1<-sample(60:90,10,replace = TRUE)   
+height=sample_1<-sample( seq(from=1.65,to=1.95,by=0.05),10,replace = TRUE)   
+BMI=weight/height^2
+
+ dplyr::case_when(
+   BMI>=30 ~ "Obese",  
+   BMI<=29.9 & BMI>=25.0 ~ "Overweight",
+   BMI<=24.9 ~ "Normal"
+ )
+ 
+ ~, tilda can be read as "evaluate as"
+ 
+ 
+ 
+ # Exercise 5
+ 
+With elseif statment, given input of 
+3 sides of triangle, define its type:
+equilateral , isosceles and scalene.
+
+Tru to include if, 1 else and 1 else if
+or 1 if and  2 else if
+
+triangle_type<-function(a,b,c) {
+  if (a==b & b==c) {
+    print("Triangle is Equilateral, all sidea are equal")
+  } else if ( a==b | b==c | a==c )   {
+    print("Triangle is Isosceles, only 2 sides are equal") 
+  } else {print("Triangle is scalene,all sides are different")} 
+}
+ 
+  triangle_type(5,6,5)
+ 
+ 
+  # Exercise 6
+  
+When defining type of triangle we should also consider that
+triangle can exist if the sum of any 2 sides of a triangle
+must be greater than the third size.
+This shouuld be the first condition to
+evaluate.
+
+triangle_type<-function(a,b,c) {
+  
+  if ( a+b>c & a+c>b & b+c>a ) {
+        if (a==b & b==c) {
+          print("Triangle is Equilateral, all sidea are equal")
+        } else if ( a==b | b==c | a==c )   {
+          print("Triangle is Isosceles, only 2 sides are equal") 
+        } else {print("Triangle is scalene,all sides are different") } 
+    } else {print("Triangle Inequality Theorem is violated")}
+}
+
+triangle_type(5,1,8)
+Multiple presence of else if and else can be source
+or error even if number of all brackes is defined correctly 
+to add readability to code use
+" } else { " positioning to add robustness to code.
+
+
+
+
+# Exercise 7
+
+For a dietary purposes person has limited amount
+of calories intake to 2000 ccal. Whenever he/she consumes more than
+1500 , "Bulking" status takes place, value equal to 2000 or lower is considered
+"Maintainace".
+sample_1<-sample( seq(1800,2800,by=100),20,replace = TRUE )
+now with length, ifelse and sum fucntion estimate
+how many days from records Diet is maintained.
+Multiple solutions are possible
+
+vector_1<-ifelse(sample_1>2000,"Bulking","Maintainace")
+vector_2<-ifelse(vector_1=="Maintainace",1,0)
+paste("Diet is maitanied: ",sum(vector_2)/length(vector_2),"% of days",sep="" )
+
+
+
+
+# Exercise 8
+
+Given a sample vectro, use ifelse to
+define what values are between 200 and 300
+and are divisible by 8.
+
+sample_1<-sample( 150:320,20,replace = TRUE )
+ifelse(sample_1 %% 8==0 & sample_1>200 & sample_1<300,TRUE,FALSE)
+
+Therefore you can nest multinple statemens with ifelse, however
+ output should be considered to classify 2 possible outcomes.
+
+
+ # Exercise 8
+ 
+ Data analysis project may require 
+ operation on dates represented in form of 
+ numerical values or cahracters.
+ With case_when fucntion 
+ convert numbers from 1 to 6
+ to its to full months names which 
+ ech number represents.
+ 
+ 
+ month_order<-sample(1:6,15,replace = TRUE)
+ 
+ dplyr::case_when(
+   month_order==1 ~"January",
+   month_order==2 ~"February",
+   month_order==3 ~"March",
+   month_order==4 ~"April",
+   month_order==5 ~"May",
+   month_order==6 ~"June"
+ )
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
