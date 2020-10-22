@@ -2,19 +2,19 @@
 Control Flow includes statements which define
 output based on specific conditions. 
 We define set of choices to be made based on input data.
-I R choices are mainly defined with if
-statement
+In R choices are mainly defined with if
+statement.
 Code Template is represented by:
-  if (condition==TRUE) {Action}
+if (condition==TRUE) {Action}
 if (condition==TRUE) {Action} else {Alternative}
 
-n varibale contais numner
-define of statment which output
-text of n if odd or even
+Assume n variable which refers to integer number.
+Define if statement which result in 
+"Odd" if n is odd and "Even" otherwise.
 Solution
 n<-20
 if (n %% 2!=0) {print("Odd")
-} else {print("Even")}
+   } else {print("Even")}
 Note that
 n<-20
 if (n %% 2!=0) {print("Odd")} 
@@ -22,85 +22,87 @@ else {print("Even")}
 
 Will result in error, so as the best practice
 else should remain in separate line
-both with curly brackets which
-separate Main Action and alternative
-
+between curly brackets which
+separate main Action and Alternative
 
 
 # Exercise 2
 
 In previous example we assume
-2 choices, as the continuatuin 
+2 choices, moving futher 
 R allows to define multiple 
 choices and adjust our output to 
 multiple input conditions.
 
-In this case else statamet is replaced
-with multiple else if dependion on 
-number of choices
+In this case else statement is replaced
+with multiple else if depending on 
+number of possible outcomes.
 
-BMI has the following gradation:
-  >=30 is classifies as Obese
-<=25.0–29.9<=is classifies as overweight
-18.5–24.9<= iis classifies as normal weight
-bmi=Kg/(height^2),
-heiht is indicates in meters.
+BMI offers the following classification:
+>=30 is classified as "Obese"
+<=25.0:29.9<= is classified as "Overweight"
+18.5:24.9<= is classified as "Normal" weight
+bmi=weight/(height^2),
+height in meters [1.78 for example].
 
 Define control flow which
 accepts as input human parameters and
-outputs bmi classification
+outputs bmi classification.
+You can crate function for additional 
+challenge.
+
+Solution
 
 BMI<-function(weight,height) {
-  bmi=weight/(height^2)
+  bmi=round( weight/(height^2) ,1)
   
   if (bmi<=24.9) {
     print("Normal Weight")
   } else if (bmi>=25.0 & bmi<=29.9) {
     print("Overweight")
   } else if (bmi>=30) {
-    print("Overweight") 
+    print("Obese") 
   }
-  
   return(bmi)    }
 
 BMI(80,1.82)
 
 
 # Exercise 3
-if statement accept signle value as input,
-technically , cndition should have length 1,
+if statement accepts signle value as input,
+technically , condition should have length 1,
 for example 
 if ( c(2,3)>5 ) {print("Ok")} will result in error
-as c(2,3) forms a vactor of lenght 2.
-to apply if statemt to vector
-ifelse statemtn can be employed.
+as c(2,3) forms vector of lenght 2.
+To apply if statement to vector
+ifelse statement should be used.
 
-x=(rnorm(20,10,2))
+x=(rnorm(5,10,2))
 print(x)
 ifelse(x>10,"Values Over Mean","Values Below or equal to Mean")
 
-Now , given the sequence
+Now , given the sequence in x,
 check with ifelse if value is odd or even
 
 # Solution
 sample_1<-sample(1:20,10,replace = TRUE)
 ifelse(sample_1 %% 2==0, "Even","Odd" )
 
-Use ifelse is usefull when the result
+Use ifelse  when the result
 forms binary variable, if operation 
 requires vector as input and considers
-more than 2 possible outcomes alternative
-contrl flow function shouls be considered
+more than 2 possible outcomes, alternative
+control flow tool should be considered.
 
 # Exercise 4
 
-dplyr package offers fucntion case_when
-which alloes vectorised operations and
+dplyr package offers function case_when()
+which operates with vectorised input and
 allows to consider multiple conditions 
-,each which uniqu outcome.
-Fucntion is similare to Case when statemnt in SQL.
+,each which unique outcome.
+Function is similar to Case When statement in SQL.
 
-Going back to example to even and uneven numbers ,
+Going back to example to even and odd numbers,
 we can  rewrite it using case_when:
   
   sample_1<-sample(1:20,10,replace = TRUE)    
@@ -109,16 +111,25 @@ dplyr::case_when(
   sample_1 %% 2!=0 ~ "Odd" 
 )
 
+
+dplyr:: is used to refer to library for which
+function belong to.
+If dplyr is activated , via library(dplyr),
+dplyr:: can be skipped. 
+  
 Now use case_when statement to define human BMI 
->=30 is classifies as Obese
-<=25.0–29.9<=is classifies as overweight
-18.5–24.9<= iis classifies as normal weight
-bmi=Kg/(height^2), 
+>=30 is classified as "Obese"
+<=25.0:29.9<= is classified as "Overweight"
+18.5:24.9<= is classified as "Normal" weight
+bmi=weight/(height^2),
+height in meters [1.78 for example].
 
 weight=sample_1<-sample(60:90,10,replace = TRUE)   
 height=sample_1<-sample( seq(from=1.65,to=1.95,by=0.05),10,replace = TRUE)   
-BMI=weight/height^2
+BMI=round( weight/height^2,1)
 
+
+Solution
 dplyr::case_when(
   BMI>=30 ~ "Obese",  
   BMI<=29.9 & BMI>=25.0 ~ "Overweight",
@@ -131,19 +142,20 @@ dplyr::case_when(
 
 # Exercise 5
 
-With elseif statment, given input of 
-3 sides of triangle, define its type:
-  equilateral , isosceles and scalene.
+With else if combination, given input of 
+3 length triangle sides, define its type:
+equilateral , isosceles and scalene.
 
-Tru to include if, 1 else and 1 else if
-or 1 if and  2 else if
+Try to include if, 1 else and 1 else if
+or 1 if and 2 else if
+Cretae function for additional challenge.
 
 triangle_type<-function(a,b,c) {
   if (a==b & b==c) {
     print("Triangle is Equilateral, all sidea are equal")
   } else if ( a==b | b==c | a==c )   {
     print("Triangle is Isosceles, only 2 sides are equal") 
-  } else {print("Triangle is scalene,all sides are different")} 
+  } else {print("Triangle is Scalene,all sides are different")} 
 }
 
 triangle_type(5,6,5)
@@ -153,9 +165,9 @@ triangle_type(5,6,5)
 
 When defining type of triangle we should also consider that
 triangle can exist if the sum of any 2 sides of a triangle
-must be greater than the third size.
-This shouuld be the first condition to
-evaluate.
+is greater than the third side.
+This condition should be evaluated before we
+classify triangle.
 
 triangle_type<-function(a,b,c) {
   
@@ -170,8 +182,8 @@ triangle_type<-function(a,b,c) {
 
 triangle_type(5,1,8)
 Multiple presence of else if and else can be source
-or error even if number of all brackes is defined correctly 
-to add readability to code use
+or error even if number of all brackets is defined correctly. 
+To add readability to code use
 " } else { " positioning to add robustness to code.
 
 
@@ -180,44 +192,42 @@ to add readability to code use
 # Exercise 7
 
 For a dietary purposes person has limited amount
-of calories intake to 2000 ccal. Whenever he/she consumes more than
-1500 , "Bulking" status takes place, value equal to 2000 or lower is considered
+of calories intake to 2000 cal. Whenever he/she consumes more than
+2000, "Bulking" status takes place, value equal to 2000 or lower is considered
 "Maintainace".
-sample_1<-sample( seq(1800,2800,by=100),20,replace = TRUE )
-now with length, ifelse and sum fucntion estimate
-how many days from records Diet is maintained.
+sample_1<-sample( seq(1800,2500,by=100),20,replace = TRUE )
+
+Now with length(), ifelse() and sum() function estimate
+how many days in sample_1 diet is maintained.
 Multiple solutions are possible
 
 vector_1<-ifelse(sample_1>2000,"Bulking","Maintainace")
 vector_2<-ifelse(vector_1=="Maintainace",1,0)
-paste("Diet is maitanied: ",sum(vector_2)/length(vector_2),"% of days",sep="" )
-
+paste("Diet is maitanied: ",sum(vector_2)/length(vector_2),"% of days",sep="")
 
 
 
 # Exercise 8
 
-Given a sample vectro, use ifelse to
+Given sample vector, use ifelse to
 define what values are between 200 and 300
-and are divisible by 8.
+and are divisible by 8 [use %% operator].
 
-sample_1<-sample( 150:320,20,replace = TRUE )
+sample_1<-sample( 180:320,20,replace = TRUE )
 ifelse(sample_1 %% 8==0 & sample_1>200 & sample_1<300,TRUE,FALSE)
 
-Therefore you can nest multinple statemens with ifelse, however
-output should be considered to classify 2 possible outcomes.
+Therefore, you can nest multiple statements with ifelse, however
+output should be considered only if 2 possible outcomes are expected.
 
 
 # Exercise 8
 
 Data analysis project may require 
 operation on dates represented in form of 
-numerical values or cahracters.
-With case_when fucntion 
+numerical values or characters.
+With case_when() function 
 convert numbers from 1 to 6
-to its to full months names which 
-ech number represents.
-
+to full months names text equivalents.
 
 month_order<-sample(1:6,15,replace = TRUE)
 
@@ -238,12 +248,13 @@ function which results in logical type.
 Assume following vector with products groups
 fmcg_brands<-c("Folgers","Nescafe","Jacobs","Snickers","Milka","Pepsi","Red Bull")
 grepl("Nestle","Nescafe is Nestle Brand") would result in TRUE if
-"Nestle" string is present in sentecne "Nescafe is Nestle Brand"
+"Nestle" string[considered as pattern] 
+is present in sentence "Nescafe is Nestle Brand"
 
 grepl("Nestle|Pepsi","Nescafe is Nestle Brand") checks if either "Nestle" or "Pepsi"
-are present in in sentecne "Nescafe is Nestle Brand"
+are present in sentecne "Nescafe is Nestle Brand"
 
-Now use grepl and case_when to classify brands in fmcg_brands 
+Now, use grepl() and case_when() to classify brands in fmcg_brands 
 into groups "Coffee","Confectionery" or "Beverages"
 
 dplyr::case_when(
@@ -252,30 +263,21 @@ dplyr::case_when(
   grepl("Pepsi|Red Bull",fmcg_brands)==TRUE  ~"Beverages"
 )
 
-Current example is usefull when working with data frames or tibbles 
-whenever we want to introduce additional layer of classification.
+Current example is usefull when working with data frames or tibbles,
+whenever we want to introduce additional layer of classification
+or aggregation.
 
 
-emp_exp<-c("Novice","Intermediate","Expert")
-salary<-c(100,150,200)
-emp_data<-data.frame(emp_exp,salary)
 
-emp_data$Bonus<-ifelse (emp_data$emp_exp=="Expert",emp_data$salary*0.8,emp_data$salary*0.3)
-
-As output 3 get 3 values which represent bonus value as percentage 
-of salary evaluated for each row in data frame, which is assign as
-separate column in or data frame.
-
+# Exercise 10
 
 Assume vector with the following classification
-emp_data<-data.frame(Emp_Id=paste(1:5,sample(letters,5),sep="-"),
-                     Base_Salary=sample(100:150,5),
-                     Yr_Employed=sample(1:5,5)  )
+emp_data<-data.frame(Emp_Id=paste(1:10,sample(letters[1:2],10,replace = TRUE),sep="-"),
+                     Yr_Employed=sample(1:5,10,replace = TRUE)  )
 
-
-Now create 2 vectors with choice flow
-First vector would be of character type with
-would include 3 classifications of employee:
+Now create 2 vectors with choice control flow.
+First vector would be of character type which
+should include 3 classifications of employees:
 "Beginner" with Yr_Employed<=1
 "Intermediate"  1<Yr_Employed<=3
 "Expert"  3<Yr_Employed<=5
@@ -283,54 +285,120 @@ would include 3 classifications of employee:
 
 if (emp_data$Yr_Employed<=1) {
   "Beginner"
-  } else if (emp_data$Yr_Employed>1 & emp_data$Yr_Employed<=3){
-    "Intermediate"
-  }else {"Expert"}  
-wil fail as we ae dealing with vector
-We can make a step forwrd and loop through each 
-value separately with loop
+} else if (emp_data$Yr_Employed>1 & emp_data$Yr_Employed<=3){
+  "Intermediate"
+} else {"Expert"}  
 
-Emp_Vector=rep(0,nrow(emp_data))
+Will fail as we are dealing with vector(length(emp_data$Yr_Employed)>1)
+We can make a step forward and loop through each 
+value separately with for loop
+
+Emp_Status=rep(0,nrow(emp_data))
 ct=1
 for (i in emp_data$Yr_Employed) {
-     if (i<=1) {
-       Emp_Vector[ct]<-"Beginner"
-     } else if (i>1 & i<=3){
-       Emp_Vector[ct]<-"Intermediate"
-     }else {  Emp_Vector[ct]<-"Expert" }  
+  if (i<=1) {
+    Emp_Status[ct]<-"Beginner"
+  } else if (i>1 & i<=3){
+    Emp_Status[ct]<-"Intermediate"
+  }else {  Emp_Status[ct]<-"Expert" }  
   ct=ct+1
 }
 
-Here we require loop define with for, ct variable
+Here, we require loop defined with for, ct variable
 as index to specify position where value should be allocated,
-initial emty vector Emp_Vector
-Solution with case_when
+initial emty vector Emp_Status.
 
+Solution with case_when:
 buf<-emp_data$Yr_Employed
-Emp_Vector<-dplyr::case_when(
-  buf<1 ~"Beginner",
+Emp_Status<-dplyr::case_when(
+  buf<=1 ~"Beginner",
   buf>1 & buf<=3~"Intermediate",
   buf>3 ~ "Expert"
-                 )
-
-emp_data$Emp_Vector<-Emp_Vector
-
-Current solution is more efficient
-To estimate Bonus value 
-we need to multiply Yr_Employed by Bonus Percentage
-Beginner receives 20% of base salary,
-Intermediate receives 50% of base salary,
-Expert receives 70% of base salary
-
-Bonus_Value<-dplyr::case_when(
-  Emp_Vector=="Beginner"~ emp_data$Yr_Employed*0.2,
-  Emp_Vector=="Intermediate"~ emp_data$Yr_Employed*0.5,
-  Emp_Vector=="Expert"~ emp_data$Yr_Employed*0.7
 )
 
+Now to attach new vector to data frame:
+emp_data$Emp_Status<-Emp_Status
+
+Current solution is more efficient.
+
+Bonus_Value is formed by base value multiplied by
+total semiannual(6 months) working periods.
+Base value for Bonus_Value depends on
+Emp_Status and Department:
+department "a":
+Beginner:50, Intermediate:60, Expert:70
+department "b":
+Beginner:80, Intermediate:90, Expert:100
+
+Now create vector which estimates
+Bonus_Value, input variables Emp_Status and Emp_Id
+represent vectors, so you can use for loop and if 
+statement or case_when.
+Use grepl(pattern,text) to check to which department employee belongs to.
+Overall, you require to specify 6 conditions,
+remember that practice makes perfect.
+
+Bonus_Value<-with (emp_data,
+      dplyr::case_when(
+          grepl("a",Emp_Id) &  Emp_Status=="Beginner"~50*Yr_Employed*2,
+          grepl("a",Emp_Id) &  Emp_Status=="Intermediate"~60*Yr_Employed*2,
+          grepl("a",Emp_Id) &  Emp_Status=="Expert"~70*Yr_Employed*2,
+          grepl("b",Emp_Id) &  Emp_Status=="Beginner"~80*Yr_Employed*2,
+          grepl("b",Emp_Id) &  Emp_Status=="Intermediate"~90*Yr_Employed*2,
+          grepl("b",Emp_Id) &  Emp_Status=="Expert"~100*Yr_Employed*2
+) )
+
+with() is used to constuct environment from our data frame,
+otherwhise, we would requre $ accessor to specify 
+what column we want to use, for example 
+grepl("a",emp_data$Emp_Id) & emp_data$Emp_Status=="Beginner"
+
+
+emp_data$Bonus_Value<-Bonus_Value
 
 
 
+# Exercise 11
+
+Assume time series which contains Sales data for
+17 months. We need to estimate outliers and replace them 
+with appropriate proxy for normal Sales level.
+
+ts1<-c(47, 52, 50, 46, 200, 54, 58, 55, 200, 51, 49, 60, 48, 200, 57,45,43)
+print(ts1)
+Value is considered as outlier if it is more than 2 standard deviations 
+away from mean.
+
+First, use ifelse() to replace outliers with NA values,
+then use for loop and if statement to replace outliers
+with averages of lag 1 and lead 1 observations.
+To solve it, you would require loop to be able to 
+refer to access value by index, or call for lag() and lead()
+function from dplyr package combined with case_when().
+
+Use mean() function and sd() to calculate statistics,
+to estimate how many standard deviations value is form mean use Z score
+(Value-Mean)/Standard Deviation,isna() to check if value is NA.
+
+
+Solution
+ts1_outliers_1<-ifelse( ( (ts1-mean(ts1))/sd(ts1) )>2,NA,ts1)
+
+for (i in seq_along(ts1_outliers_1)) {
+  if (is.na(ts1_outliers_1[i]) ) {
+    ts1_outliers_1[i]<-(ts1[i-1]+ts1[i+1])/2 } 
+                                   }
+
+With lag() and lead() fucntion solution is 
+{please install dplyr library to run code}
+
+ts1_outliers_2<-ifelse( ( (ts1-mean(ts1))/sd(ts1) )>2,NA,ts1)
+ts1_outliers_2<-case_when(
+  is.na(ts1_outliers_2)~ (lag(ts1_outliers_2)+lead(ts1_outliers_2))/2,
+  TRUE~ts1_outliers_2
+)
+
+all(ts1_outliers_1==ts1_outliers_2)
 
 
 
