@@ -26,6 +26,22 @@ between curly brackets which
 separate main Action and Alternative
 
 
+
+#  Exercise 2
+2 lines which are describes by equation ax+by=c
+are considered parallel is the slopes are equal,
+slope is calculated as m=-a/b.
+given 2 vectors, determine if lines are parallel:
+in other words slopes are equal.
+line_1<-c(2,4,8) #for a,b,c
+line_2<-c(8,9,11)
+
+Solution:
+if (line_1[1]/line_1[2]==line_2[1]/line_2[2]) {
+print("Lines are Parallel")
+} else { print("Lines are Not Parallel") }
+
+
 # Exercise 2
 
 In previous example we assume
