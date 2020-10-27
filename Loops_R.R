@@ -1,4 +1,3 @@
-#1
 Most common way to create loop is to use for keyword.
 for loop syntax in R is represented in the following
 form
@@ -19,7 +18,7 @@ Now use seq() fucntion to form sequence form
 
 # Silutio
 for ( i in seq(from=0, to=1000, by=100) ) {
-    print( (1+1/i)^i   )   }
+  print( (1+1/i)^i   )   }
 Notice that to replicate
 same calculations with can take advantage of vectors in R
 n<-seq(from=0, to=1000, by=100)
@@ -31,7 +30,6 @@ withour calling for structure.
 
 However, ability to extract singlew object via loop
 would allow more customised data manipulations.
-
 
 
 # 2
@@ -141,6 +139,60 @@ for (i in 4:10) {
 print(vector_1)
 
 
+
+
+
+#2
+
+in previus example variable i sequentially takes values from
+specified range of numbers.It is possible to specify character vector 
+as sequence to lop through.
+for (i in letters) {
+  print(i)
+}
+Here i would accept alement by element values fro in build vector letters.
+Notice, we can also  use i as index to subset vector
+
+for (i in 1:26) {
+  print(letters[i])
+}
+
+Now use month.abb and month.name vector and for loop
+to print element by element values from both vectors in single row,use:
+paste(month.abb,month.name,sep=" ") and i as index
+
+for (i in 1:12) {
+  print( paste(month.abb[i],month.name[i],sep=":") )
+}
+
+If i is used as index , in other words it iterates over arithmetic progression, 
+it can be applied to subset 
+data in multiple vectors or more complex structures.
+
+
+#3
+Assume sample data frame:
+  n<-sample(10:15,1)
+employee_db<-data.frame(Emp_Id=paste( sample(1:n,n) , sample(letters,n),sep="-" ),
+                         Salary=sample(500:700,n)  )
+
+Now we would like to loop throup each recorm in sample data frame.
+Assume we dont know total number of records in advance, but we are aware that
+for structure , if i is used as index requres specification 
+of first and last index. In this case , we can use 
+sevaral fucntions to initiate loop:
+  nrow(),lenght()
+
+for (i in 1:nrow(employee_db) ){
+  print(employee_db[i,])
+}
+for (i in 1:length(employee_db$Emp_Id) ){
+  print(employee_db[i,])
+}
+
+Here nrow() or length() hepled us to define 
+indices will is compulsory is we dont know in advance 
+last ndices
 
 
 
