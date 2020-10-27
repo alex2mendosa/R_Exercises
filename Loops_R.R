@@ -270,7 +270,17 @@ plot(random_walk_1,type="l",col="red")
 
 
 
+# Assume value of
+n<-2
+use for loop to calculate sum of the following sequence after
+20 iterations
+n - n^3 + n^5 + n^7 ....
+powers should be repsesented by "i" iterator and sum in sum_1 variable
 
+sum_1<-0
+for (i in seq(from=1,by=2,along.with = 1:10) ){
+    sum_1<-sum_1+n^i
+}
 
 
 
