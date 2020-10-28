@@ -4,8 +4,10 @@ for based loop syntax in R is represented in the following
 form:
 for ( variable in vector ) {action to perform}
 for ( i in 1:10) {print(i^2)}
+
 In this loop "i" would sequentially take values from 
-sequence from 1 to 10, apply power of 2 and print output.
+sequence from 1 to 10 [dont forger round bracjets], apply power of 2 and print output 
+[output is indicated in curly brackets].
 Outputs of iterations are not connected and
 repsesent separate objects.
 Same result can be achieved with
@@ -61,6 +63,27 @@ for (i in 1:5 ){
 }
 Here i is used as part of vector generating expression
 1:i
+
+
+
+
+### 3
+
+for loop "i" iterator can accept decreasing sequence
+and use it as index or part of calculations
+vector_1<-sample(1:20,10)
+for (i in 20:1) {
+print(vector_1[i])  }
+Therefor we print values starting from the last 
+in vector_1
+
+Now apply the same approach to estimate square root via
+sqrt() fucntion to sequence from 10 to -1.
+You shoul get Nan during last iteration 
+
+for (i in 10:-1) {
+print(sqrt(i))  }
+
 
 
 
