@@ -203,6 +203,39 @@ print( paste(sum_digits,count_digits)  )
 
 
 
+#6 
+Common exerciser to practice for and if loops is to write the following
+code:
+if value in range is multiple of 5, print
+word Buzz, if values is multiple of 3, print Fizz,
+if value is multiple of borth numbers , print 
+"FizzBuzz", if statemnts should be collected via
+else if statements.
+Notice we are alnikg about 3 possible outcome, if 
+condition 
+if (15 %% 3 == 0) {print("Fizz")
+ } else if (15 %% 5 == 0) {print("Buzz")
+ } else if (15 %% 3 == 0) {print("FizzBuzz")
+ } 
+
+15 is multiple of 3 ,5 and both however, as soon as condition 
+if (15 %% 3 == 0) {print("Fizz") avaluates to true,
+we would skip the remaining conditions even though 
+they satisfy TRUE outcome.
+We should rearrange else if statements to capturefirst 
+most general conditions and then procedd to more
+specific conditions.
+Assume vectore 
+                   
+                   
+       
+                   
+                   
+
+
+
+
+
 
 
 
