@@ -351,16 +351,24 @@ for (i in vector_1) {
 }
 
 
+# 11
+ 
+16. Write a Python program to find numbers between
+ 100 and 400 (both included) where each digit of a number is an even number.
+ The numbers obtained should be printed in a comma-separated sequence
+
+
+
+# 12
+ 
+ 31. 31. Write a Python program to calculate a dog's age in dog's years. Go to the editor
+Note: For the first two years, a dog year is equal to 10.5 human years. After that, each dog year equals 4 human years.
 
 
 
 
-
-
-
-
-
-
+# 13
+ Write a Python program that reads two integers representing a month and day and prints the season for that month and day.
 
 
 
