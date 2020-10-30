@@ -418,8 +418,29 @@ all(ts1_outliers_1==ts1_outliers_2)
 
 
 
-
-
+# Exercise 12
+1. Write a C program to accept two integers and check whether they are equal or not.
+                  
+ # Exercise 13
+                  
+ Write a C program to find the largest of three numbers.                 
+                  
+      
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
 
 
 
