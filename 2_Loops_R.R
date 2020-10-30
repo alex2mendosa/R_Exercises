@@ -306,6 +306,25 @@ for (i in seq(from=1,by=2,along.with = 1:10) ){
 }
 
 
+1. Write a program in C to display the first 10 natural numbers
+
+
+1. Write a program in C to display the first 10 natural numbers in vererse
+
+
+Write a program in C to convert a binary number into a decimal number using math function.
+
+
+Write a program in C to find the sum of the series 1 +11 + 111 + 1111 + .. n terms.
+
+
+
+
+
+
+
+
+
 
 
 
