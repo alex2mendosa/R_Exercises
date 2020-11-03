@@ -1,12 +1,12 @@
 #1
 Most common way to create loop is to use "for" keyword.
-for based loop syntax in R is represented in the following
-form:
-for ( variable in vector ) {action to perform}
-for ( i in 1:10) {print(i^2)}
+"for" based loop syntax in R is can be generalised as:
+  for ( variable in vector ) {action to perform}, fo example
+  for ( i in 1:10) {print(i^2)}
 
-In this loop "i" would sequentially take values from 
-sequence from 1 to 10 [dont forger round bracjets], apply power of 2 and print output 
+In this loop "i" variable would sequentially take values from 
+sequence from 1 to 10 [dont forger round brackets], 
+apply power of 2 and print output 
 [output is indicated in curly brackets].
 Outputs of iterations are not connected and
 repsesent separate objects.
@@ -14,12 +14,13 @@ Same result can be achieved with
 (1:10)^2, but in this case output forms 
 another vector which stores squared values.
 
-Now use seq() fucntion to form sequence form 
-0 to 1000, with step of 100 translated through i variable
-and estimate value of 
-(1+1/i)^i which should converge to Euler's Number
+Now use seq() function to form sequence form 
+0 to 1000, with step of 100, translated through j variable
+and estimate and prints values of 
+(1+1/j)^j which should converge to Eulers Number
 
-# Silution
+# Solution
+
 for ( i in seq(from=0, to=1000, by=100) ) {
   print( (1+1/i)^i   )   }
 Notice that to replicate
@@ -36,23 +37,23 @@ would allow more customised data manipulations.
 
 
 
-
 # 2
-for based  loop would allow to create sequences for
+"for" based loop would allow to create sequences in
 which each consecutive values are result
-of arithmetic or logical operations performed over lagged values
+of arithmetic or logical operations performed over lagged values.
 
 ct_1=0
 for (i in 1:10 ){
   ct_1=ct_1+i
 }
 print(ct_1)
+
 Here loop is used to estimate sum of all values in range from 
-1 to 10, againg , R would allow to perform the
+1 to 10, R would allow to achieve the
 same result with sum() function.
 Now use for loop and sum() function and prod() function to print cummulative sum
 for range form 1 to 10, same result should be 
-achieved with cumsum() and cumprod() functions
+achieved with cumsum() and cumprod() functions.
 
 Solution
 for (i in 1:5 ){
@@ -62,38 +63,40 @@ for (i in 1:5 ){
   print(prod(1:i))
 }
 Here i is used as part of vector generating expression
-1:i
+1:i, as i increases so does nuber of element in 
+arguments of sum and prod functions.
 
 
 
 
 ### 3
-
-for loop "i" iterator can accept decreasing sequence
+In "for" loop "i" 
+[any name can be used as soon as it satisfies
+R rules for variables names] iterator can accept decreasing sequence
 and use it as index or part of calculations
 vector_1<-sample(1:20,10)
-for (i in 20:1) {
+for (i in 10:1) {
 print(vector_1[i])  }
-Therefor we print values starting from the last 
-in vector_1
+Therefore, we print values starting from the last 
+in vector_1.
 
 Now apply the same approach to estimate square root via
-sqrt() fucntion to sequence from 10 to -1.
-You shoul get Nan during last iteration 
+sqrt() function to sequence from 10 to -1.
+You should get Nan during last iteration.
 
 for (i in 10:-1) {
-print(sqrt(i))  }
+ print(sqrt(i))  }
 
 
 
 
-### 3
+### 4
 
 We can define more complex arithmetic progression 
 as proxy for iterator in R.
 vector_1<-rnorm(10,5,5)
 Vector contains random numbers , wa want to extract
-values whose ondex is even,
+values whose index is even,
 total number of even values in sequence from 1 to 10 is 5
 
 for (i in seq(from=2,to=10,by=2) ) {
@@ -109,34 +112,32 @@ Solution
 for (i in seq(from=1,to=20,by=2) ) {
   print( vector_1[i] )
 }
- remember than in R indices start with 1
- 
+
+Remember than in R indices start with 1
 Again, you can easily done the same with  
-
 vector_1[ seq(from=1,to=20,by=2) ]
-
 Full benefits of loops are about to reveal themselves.
 
 
 
-### 4
+### 5
 Common vectorised R functions like sum(),mean(),
 cumsum(),cumprod() can adress operations which are
 common in data analysys tasks and involve mathematical operations
-with clear analytical definition ususalyy performed over
+with clear analytical definition, usually performed over
 forward moving calculations.
 
 Assume non trivial task,
 vector_1<-letters[1:10]
-now I want to replace positions of 
+Now we want to replace positions of 
 consequtive pairs:
   a,b,c,d should become : b,a,d,c
 The task may not have direct practical application 
-in data anlysis , however
+in data anlysis, however
 it demonstates that loop would allow more diverse
 type of manipulations compare to base functions
 
-Solutions
+Solution
 for ( i in seq(from=2,to=length(vector_1),by=2 ) ) {
   print(i)
 }   # here we define second index of each pair
@@ -148,7 +149,7 @@ for ( i in seq(from=2,to=length(vector_1),by=2 ) ) {
 } 
 print(vector_1)
 
-Notice we introduce buf variable to keep replaced value stored,
+Notice, we introduce buf variable to keep replaced value stored,
 because second operation rewrites it.
 
 Now , given 
@@ -161,7 +162,7 @@ a(i)=a(i-1)+a(i-2) or
 2=1+1, next
 assigh value 2 to fourth index of vector_1.
 Repeat this operation 7 times, loop should start from 
-4[index of first missing value]
+4 which is index of first missing value in vector_1
 
 for (i in 4:10) {
   vector_1[i]<-vector_1[i-1]+vector_1[i-2]
@@ -170,7 +171,7 @@ print(vector_1)
 
 
 
-#5
+#6
 
 In previus examples variable "i" sequentially takes values from
 specified range of numbers.It is possible to specify character vector 
