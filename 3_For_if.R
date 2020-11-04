@@ -46,7 +46,7 @@ for (i in 1:length(vector_1)  ){
 #2
 To learn best practice in coding, it is usefull
 to know how to incorporate full if+else
-statement in for loop , to account for 
+  statement in for loop , to account for 
 conditions not expected by main Conditional_test
 
 Assume variable j takes sequentially 
@@ -70,10 +70,10 @@ for (i in vector_1) {
   if (i==1) {
     print(TRUE)
   } else {print(FALSE)} 
-  }
+}
 
 Now assume vector:
-vector_1<-sample(1:20,10)
+  vector_1<-sample(1:20,10)
 Now print message "Even" and loop variabe in 
 each iteration of loop, otherwise , print "Odd"
 
@@ -128,7 +128,7 @@ be at least 2 times lower tham minimum value between 345 and 675,
 otherwise it wount be divisible with remainder of 0 by
 345
 Solutiuon with loop and if is the following:
-var_1<-345
+  var_1<-345
 var_2<-675
 loop_end<-min(var_1,var_2)/2
 gcd<-0
@@ -225,13 +225,13 @@ if value is multiple of borth numbers , print
 else if statements.
 Notice, we are talking about 3 possible outcomes:
   
-if (15 %% 3 == 0) {
-  print("Fizz")
-} else if (15 %% 5 == 0) {
-  print("Buzz")
-} else if (15 %% 3 == 0 & 15 %% 5 == 0) {
-  print("FizzBuzz")
-} 
+  if (15 %% 3 == 0) {
+    print("Fizz")
+  } else if (15 %% 5 == 0) {
+    print("Buzz")
+  } else if (15 %% 3 == 0 & 15 %% 5 == 0) {
+    print("FizzBuzz")
+  } 
 
 15 is multiple of 3,5 and both, however, as soon as condition 
 if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
@@ -245,7 +245,7 @@ if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
   } else if (15 %% 5 == 0) {print("Buzz")
   } else if (15 %% 3 == 0 ) {print("Fizz") }
   
-
+  
   Now write loop with for statement and also add 
   else transition  in the end to account to remainig numbers
   which are neither divisible by 3 or 5 or both
@@ -291,7 +291,7 @@ if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
   and all odd numbers in vector_odd
   
   Example:
-  vector_even<-as.numeric()
+    vector_even<-as.numeric()
   vector_odd<-as.numeric()
   
   for (i in vector_1) {
@@ -317,14 +317,14 @@ if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
   Assume te followinf grading scale:
     
   Grade	Description
-  E	Excellent
-  V	Very Good
-  G	Good
-  A	Average
-  F	Fail
+  E:Excellent
+  V:Very Good
+  G:Good
+  A:Average
+  F:Fail
   
   Grades are stored in vector
-  vector_grades<-sample(c("E","V","G","A","F") ,100,replace=TRUE)
+  vector_grades<-sample(c("E","V","G","A","F") ,50,replace=TRUE)
   
   Now combine loop and if statements to 
   print  grade and its description.
@@ -354,29 +354,35 @@ if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
     } else if (i=="F") {print("Fail") }
   }
   
- 
-
+  
+  
   # 10
-  
-  16. Write a Python program to find numbers between
-  100 and 400 (both included) where each digit of a number is an even number.
-  The numbers obtained should be printed in a comma-separated sequence
-  
-  
-  
-  # 11
-  
-  31. 31. Write a Python program to calculate a dog's age in dog's years. Go to the editor
-  Note: For the first two years, a dog year is equal to 10.5 human years. After that, each dog year equals 4 human years.
-  
+  Write R program to find numbers between
+  200 and 500 (both included) where each digit of a number is an even number.
+  0 values are also acceptable.
+  Input data is stored in the following vector:
+  vector_1<-sample(200:500,20)
+  Because we are dealing 
+  with 3 digit numbers ,we can use
+  %/% for integer division by 100
+  and 10 to extract integer part of divition
+  and check if it is even
   
   
+  Solution
+  for (i in vector_1){
+    part_100<-i %/% 100
+    remainder<-i %% 100
+    part_10<-remainder %/% 10
+    part_1<-remainder %% 10
+    if (part_100 %% 2==0 & part_10 %% 2==0 & part_1 %% 2==0){
+      print( paste(i, part_100,part_10,part_1,sep=" ")  ) }
+  }
   
-  # 12
-  Write a Python program that reads two integers representing a month and day and prints the season for that month and day.
+
   
   
-  
+
   
   
   
