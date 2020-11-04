@@ -2,7 +2,7 @@
 Most common way to create loop is to use "for" keyword.
 "for" based loop syntax in R is can be generalised as:
   for ( variable in vector ) {action to perform}, fo example
-  for ( i in 1:10) {print(i^2)}
+for ( i in 1:10) {print(i^2)}
 
 In this loop "i" variable would sequentially take values from 
 sequence from 1 to 10 [dont forger round brackets], 
@@ -57,7 +57,7 @@ achieved with cumsum() and cumprod() functions.
 
 Solution
 for (i in 1:5 ){
-    print(sum(1:i))
+  print(sum(1:i))
 }
 for (i in 1:5 ){
   print(prod(1:i))
@@ -72,11 +72,11 @@ arguments of sum and prod functions.
 ### 3
 In "for" loop "i" 
 [any name can be used as soon as it satisfies
-R rules for variables names] iterator can accept decreasing sequence
+  R rules for variables names] iterator can accept decreasing sequence
 and use it as index or part of calculations
 vector_1<-sample(1:20,10)
 for (i in 10:1) {
-print(vector_1[i])  }
+  print(vector_1[i])  }
 Therefore, we print values starting from the last 
 in vector_1.
 
@@ -85,7 +85,7 @@ sqrt() function to sequence from 10 to -1.
 You should get Nan during last iteration.
 
 for (i in 10:-1) {
- print(sqrt(i))  }
+  print(sqrt(i))  }
 
 
 
@@ -143,9 +143,9 @@ for ( i in seq(from=2,to=length(vector_1),by=2 ) ) {
 }   # here we define second index of each pair
 
 for ( i in seq(from=2,to=length(vector_1),by=2 ) ) {
-      buf=vector_1[i-1]
-      vector_1[i-1]=vector_1[i]
-      vector_1[i]=buf
+  buf=vector_1[i-1]
+  vector_1[i-1]=vector_1[i]
+  vector_1[i]=buf
 } 
 print(vector_1)
 
@@ -157,7 +157,7 @@ vector_1<-c(0,1,1,rep(0,7)) Generate Fibonacci sequence.
 As the first step, you need to generate fourth value
 which woulde be result of
 sum of 2 previous number:
-fourth number= third number+second number or
+  fourth number= third number+second number or
 a(i)=a(i-1)+a(i-2) or
 2=1+1, next
 assigh value 2 to fourth index of vector_1.
@@ -180,7 +180,7 @@ for (i in letters) {
   print(i)
 }
 Here "i" would accept element by element values from in-build vector letters.
-Notice, we can also  use "i" as index to subset vector letters
+Notice, we can also  use "i" as index to subset vector
 
 for (i in 1:26) {
   print(letters[i])
@@ -188,26 +188,28 @@ for (i in 1:26) {
 
 Now use month.abb and month.name vector and for loop
 to print element by element values from both vectors in single row,use template:
-paste(month.abb,month.name,sep=" ") and i as index
+  paste(month.abb,month.name,sep=" ") and i as index
 
 for (i in 1:12) {
   print( paste(month.abb[i],month.name[i],sep=":") )
 }
 
-If i is used as index , in other words, it iterates over arithmetic progression, 
-it can be applied to subset data in multiple vectors or more complex structures.
+If "i" is used as index, in other words, it iterates 
+over arithmetic progression, 
+it can be applied to subset data in multiple 
+vectors or more complex structures.
 
 
 
-#6
+#7
 Assume sample data frame:
- n<-sample(10:15,1)
+n<-sample(10:15,1)
 employee_db<-data.frame(Emp_Id=paste( sample(1:n,n) , sample(letters,n),sep="-" ),
-                         Salary=sample(500:700,n)  )
+                        Salary=sample(500:700,n)  )
 
 Now we would like to loop through each record in sample data frame employee_db.
 Assume we dont know total number of records in advance, but we are aware that
-"for" based loop , if i is used as index, requres specification 
+"for" based loop , if "i" is used as index, requres specification 
 of first and last index. In this case , we can use 
 sevaral functions to initiate loop:
   nrow(),length()
@@ -220,12 +222,12 @@ for (i in 1:length(employee_db$Emp_Id) ){
 }
 
 Here nrow() or length() hepled us to define 
-indices which is compulsory as we dont know in advance 
-last index.
+indices, therefore we able to define indices and
+total number od iterations.
 
-Now , for employee_db, loop through 
+Now , for employee_db data set, loop through 
 each record and print the following sentance
-{Emp_Id} has salary of {Salary},use combination of
+"{Emp_Id} has salary of {Salary}",use combination of
 paste() and print() functions
 
 for (i in 1:nrow(employee_db) ){
@@ -233,91 +235,121 @@ for (i in 1:nrow(employee_db) ){
 }
 
 
-#7
+#8
 Assume vector whose length is random:
-vector_1<-seq(from=1,to=sample(50:100,1),by=3)
+  vector_1<-seq(from=1,to=sample(50:100,1),by=3)
 Now use length() function and seq() to define loop and
 loop through each third element of vector_1
 
 for (i in seq(from=3,to=length(vector_1),by=3 )  ){
-print(vector_1[i])
+  print(vector_1[i])
 }
 
-#8
+#9
 
-Use for loop to conver number from base 10 to 
-base 2, number to convert is 456
-The process is the following.
+Use for loop to convert number from base 10 to 
+base 2, number to convert is 456.
+The process is the following:
 first we divide 453 by desired base, in our case it is 2.If remainder is 0,
-last digit of binary vertion should be 0, otherwise 1.
-Then we keep dividing integer part of 453/2 by 2 [226] again and check the remainder.
+last digit[counting from left] of binary version should be 0, otherwise 1.
+Then we keep dividing integer part of 453 %/% 2 by 2 [226] 
+again,check the remainder and add[concatenate] either 1 or 0 to
+value of previous remainder
+
 The process remains until integer part is 0.
 
 Total number of iterations requred is 9,
-digits of base 2 vertions should be stored in vector base_2
-n<-453, use %% to check remainder and %/% for integer part of divition
+digits of base 2 version should be stored in vector base_2
+n<-453, use %% to check remainder and %/% for integer part of division
 base_2<-vector(mode="numeric",length=9)
-indices in loop should go from last to the first index of base_2 [9:1]
+Indices in loop should go from last to the first index of base_2 [9:1]
 
 for (i in 9:1) {
-    base_2[i]<-n %% 2
-    n<-n %/% 2
-}
-
-
-#9
-Now use for loop where each value is number of times it should be printed
-,for example,1,2,2,3,3,3,4,4,4,4
-Implement the process up to digit 10,use rep() function
-to accomplish task
-
-for (i in 1:10) {
-print(rep(i,i))
+  base_2[i]<-n %% 2
+  n<-n %/% 2
 }
 
 
 #10
+Now use for loop where each value determines how many times it should be printed
+,for example,1,2,2,3,3,3,4,4,4,4
+Implement the process up to digit 10,use rep() function
+to accomplish task
+ 
+for (i in 1:10) {
+  print(rep(i,i))
+}
+
+
+#11
 
 Random walk is defined via formula
-y(i)=y(i-1)+e(i) where i represents time index
+y(i)=y(i-1)+e(i) where i represents time index.
 Generate 30 values of random walk, use rnorm(1,0,1) to generate
 e(i): random value(white noice)
-y(1) is e(i)
-Valies must be stored in 
+y[1] should be equal to e(i)
+Values must be stored in 
 random_walk_1<-vector(mode="numeric",length=30)
+
+Solution
+
 random_walk_1[1]<-rnorm(1,0,1)
 for (i in 2:30){
-random_walk_1[i]<-random_walk_1[i-1]+rnorm(1,0,1)
+  random_walk_1[i]<-random_walk_1[i-1]+rnorm(1,0,1)
 }
 print(random_walk_1)
 plot(random_walk_1,type="l",col="red")
 
 
 
-# Assume value of
+#12
 n<-2
 use for loop to calculate sum of the following sequence after
 20 iterations
 n - n^3 + n^5 + n^7 ....
 powers should be repsesented by "i" iterator and sum in sum_1 variable
+use seq() function to define sequence with 2 as increment.
 
+Solution
 sum_1<-0
 for (i in seq(from=1,by=2,along.with = 1:10) ){
-    sum_1<-sum_1+n^i
+  sum_1<-sum_1+n^i
 }
 
 
-1. Write a program in C to display the first 10 natural numbers
+#13
+Write a program in R to display the first 10 natural numbers
+starting from 2
+Natural number is only by 1 and itself.
+As possible solution use the followint combination:
+  
+all( c(2:10) %% 2==0) Whisc results in TRUE
+only of logical vector c(1:10) %% 2==0 has 
+all elements equal to TRUE. 
 
 
-1. Write a program in C to display the first 10 natural numbers in vererse
+for (i in 2:10) {
+     if (   all(i %% 2:(i-1)!=0)    )  {
+             print(i)
+     }
+}
 
 
-Write a program in C to convert a binary number into a decimal number using math function.
+#14
 
-
-Write a program in C to find the sum of the series 1 +11 + 111 + 1111 + .. n terms.
-
+Write a program in R to find the sum of the series:
+2 +22 + 222 + 3333 + .. n terms.
+n<-10
+sm=0
+Multiple solutions are possible including 
+solutions which involves types manupulation [from sting to number]
+using as.numeric() function, paste( ,collapse="" )
+for (i in 1:n) {
+  string_val=as.numeric( paste(rep(2,i),collapse = ""))
+  print(string_val)
+  sm=sm+string_val
+}
+print(sm)
 
 
 
