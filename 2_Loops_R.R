@@ -1,22 +1,22 @@
 #1
 Most common way to create loop is to use "for" keyword.
 "for" based loop syntax in R is can be generalised as:
-  for ( variable in vector ) {action to perform}, fo example
+  for ( variable in vector ) {action to perform}, for example
 for ( i in 1:10) {print(i^2)}
 
 In this loop "i" variable would sequentially take values from 
-sequence from 1 to 10 [dont forger round brackets], 
+sequence from 1 to 10 [dont forget round brackets], 
 apply power of 2 and print output 
 [output is indicated in curly brackets].
 Outputs of iterations are not connected and
 repsesent separate objects.
 Same result can be achieved with
 (1:10)^2, but in this case output forms 
-another vector which stores squared values.
+another vector which reference squared values.
 
 Now use seq() function to form sequence form 
 0 to 1000, with step of 100, translated through j variable
-and estimate and prints values of 
+and estimate and print values of 
 (1+1/j)^j which should converge to Eulers Number
 
 # Solution
@@ -30,7 +30,7 @@ n<-seq(from=0, to=1000, by=100)
 
 Example illustates the importance of Vectorisation in R,
 specifically that many operations in R can be performed
-withour calling "for" structure.
+without calling "for" structure.
 
 However, ability to extract single value via loop
 would allow more customised data manipulations.
@@ -62,8 +62,8 @@ for (i in 1:5 ){
 for (i in 1:5 ){
   print(prod(1:i))
 }
-Here i is used as part of vector generating expression
-1:i, as i increases so does nuber of element in 
+Here "i" is used as part of vector generating expression
+1:i, as i increases so does number of elements in 
 arguments of sum and prod functions.
 
 
@@ -72,7 +72,7 @@ arguments of sum and prod functions.
 ### 3
 In "for" loop "i" 
 [any name can be used as soon as it satisfies
-  R rules for variables names] iterator can accept decreasing sequence
+ R rules for variables names] iterator can accept decreasing sequence
 and use it as index or part of calculations
 vector_1<-sample(1:20,10)
 for (i in 10:1) {
@@ -114,7 +114,7 @@ for (i in seq(from=1,to=20,by=2) ) {
 }
 
 Remember than in R indices start with 1
-Again, you can easily done the same with  
+Again, you can do the same with  
 vector_1[ seq(from=1,to=20,by=2) ]
 Full benefits of loops are about to reveal themselves.
 
@@ -123,7 +123,7 @@ Full benefits of loops are about to reveal themselves.
 ### 5
 Common vectorised R functions like sum(),mean(),
 cumsum(),cumprod() can adress operations which are
-common in data analysys tasks and involve mathematical operations
+common in data analysis tasks and involve mathematical operations
 with clear analytical definition, usually performed over
 forward moving calculations.
 
@@ -133,7 +133,7 @@ Now we want to replace positions of
 consequtive pairs:
   a,b,c,d should become : b,a,d,c
 The task may not have direct practical application 
-in data anlysis, however
+in data analysis, however
 it demonstates that loop would allow more diverse
 type of manipulations compare to base functions
 
@@ -152,10 +152,13 @@ print(vector_1)
 Notice, we introduce buf variable to keep replaced value stored,
 because second operation rewrites it.
 
+ 
+ 
+ ### 6
 Now , given 
 vector_1<-c(0,1,1,rep(0,7)) Generate Fibonacci sequence.
 As the first step, you need to generate fourth value
-which woulde be result of
+which would be result of
 sum of 2 previous number:
   fourth number= third number+second number or
 a(i)=a(i-1)+a(i-2) or
@@ -164,6 +167,8 @@ assigh value 2 to fourth index of vector_1.
 Repeat this operation 7 times, loop should start from 
 4 which is index of first missing value in vector_1
 
+ 
+ Solution
 for (i in 4:10) {
   vector_1[i]<-vector_1[i-1]+vector_1[i-2]
 }
@@ -171,7 +176,7 @@ print(vector_1)
 
 
 
-#6
+#7
 
 In previus examples variable "i" sequentially takes values from
 specified range of numbers.It is possible to specify character vector 
@@ -180,7 +185,7 @@ for (i in letters) {
   print(i)
 }
 Here "i" would accept element by element values from in-build vector letters.
-Notice, we can also  use "i" as index to subset vector
+Notice, we can also use "i" as index to subset vector
 
 for (i in 1:26) {
   print(letters[i])
@@ -201,7 +206,7 @@ vectors or more complex structures.
 
 
 
-#7
+#8
 Assume sample data frame:
 n<-sample(10:15,1)
 employee_db<-data.frame(Emp_Id=paste( sample(1:n,n) , sample(letters,n),sep="-" ),
@@ -235,7 +240,7 @@ for (i in 1:nrow(employee_db) ){
 }
 
 
-#8
+#9
 Assume vector whose length is random:
   vector_1<-seq(from=1,to=sample(50:100,1),by=3)
 Now use length() function and seq() to define loop and
@@ -245,7 +250,7 @@ for (i in seq(from=3,to=length(vector_1),by=3 )  ){
   print(vector_1[i])
 }
 
-#9
+#10
 
 Use for loop to convert number from base 10 to 
 base 2, number to convert is 456.
@@ -258,19 +263,21 @@ value of previous remainder
 
 The process remains until integer part is 0.
 
-Total number of iterations requred is 9,
+Total number of iterations required is 9,
 digits of base 2 version should be stored in vector base_2
 n<-453, use %% to check remainder and %/% for integer part of division
 base_2<-vector(mode="numeric",length=9)
 Indices in loop should go from last to the first index of base_2 [9:1]
 
+ 
+ Solution
 for (i in 9:1) {
   base_2[i]<-n %% 2
   n<-n %/% 2
 }
 
 
-#10
+#11
 Now use for loop where each value determines how many times it should be printed
 ,for example,1,2,2,3,3,3,4,4,4,4
 Implement the process up to digit 10,use rep() function
@@ -281,7 +288,7 @@ for (i in 1:10) {
 }
 
 
-#11
+#12
 
 Random walk is defined via formula
 y(i)=y(i-1)+e(i) where i represents time index.
@@ -302,12 +309,12 @@ plot(random_walk_1,type="l",col="red")
 
 
 
-#12
+#13
 n<-2
 use for loop to calculate sum of the following sequence after
 20 iterations
 n - n^3 + n^5 + n^7 ....
-powers should be repsesented by "i" iterator and sum in sum_1 variable
+powers should be repsesented by "i" iterator and summaiton referenced in sum_1 variable
 use seq() function to define sequence with 2 as increment.
 
 Solution
@@ -317,16 +324,15 @@ for (i in seq(from=1,by=2,along.with = 1:10) ){
 }
 
 
-#13
-Write a program in R to display the first 10 natural numbers
-starting from 2
-Natural number is only by 1 and itself.
-As possible solution use the followint combination:
+#14
+Write a program in R to display prime numbers
+in range 2 till 10
+Prime  number is only divisible by 1 and itself.
+As possible solution use the following combination:
   
-all( c(2:10) %% 2==0) Whisc results in TRUE
-only of logical vector c(1:10) %% 2==0 has 
+all( c(2:10) %% 2==0) which  results in TRUE
+only of logical vector c(2:10) %% 2==0 has 
 all elements equal to TRUE. 
-
 
 for (i in 2:10) {
      if (   all(i %% 2:(i-1)!=0)    )  {
@@ -335,7 +341,7 @@ for (i in 2:10) {
 }
 
 
-#14
+#15
 
 Write a program in R to find the sum of the series:
 2 +22 + 222 + 3333 + .. n terms.
@@ -343,7 +349,7 @@ n<-10
 sm=0
 Multiple solutions are possible including 
 solutions which involves types manupulation [from sting to number]
-using as.numeric() function, paste( ,collapse="" )
+using as.numeric() function and paste( ,collapse="" )
 for (i in 1:n) {
   string_val=as.numeric( paste(rep(2,i),collapse = ""))
   print(string_val)
