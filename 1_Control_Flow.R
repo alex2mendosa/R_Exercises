@@ -11,7 +11,9 @@ Code Template is represented by:
 Assume n variable which refers to integer number.
 Define if statement which prints  
 "Odd" if n is odd and "Even" otherwise.
+
 Solution
+
 n<-20 # fell free to choose any number
 if (n %% 2!=0) {print("Odd")
 } else {print("Even")}
@@ -30,10 +32,10 @@ separate Main Action and Alternative
 #  Exercise 2
 2 lines on 2 dimentional plane
 which are described by equation ax+by=c
-are considered parallel if  slopes are equal,
+are considered parallel if slopes are equal,
 slope is calculated as m=-a/b.
 Given 2 vectors, determine if lines are parallel:
-in other words estimate slope for both lines and compare them.
+in other words estimate slopes for both lines and compare them.
 line_1<-c(2,4,8) #for a,b,c
 line_2<-c(8,9,11)
 Use [] accessor to select input 
@@ -86,7 +88,7 @@ BMI<-function(weight,height) {
   return(bmi)    }
 
 BMI(80,1.82)
-Notice that else if is located between
+Notice that "else if" is located between
 2 curly brackets in separate line,
 current notation allows R to read 
 properly declared conditions.
@@ -129,11 +131,11 @@ control flow structure should be considered.
 dplyr package offers function case_when()
 which operates with vectorised input[unlike if statement] and
 allows to consider multiple conditions
-followed by unique outcome.
+followed by unique outcomes.
 Function is similar to Case When statement in SQL.
 
 Going back to example with even and odd numbers,
-we can  rewrite it using case_when:
+we can rewrite it using case_when:
   
 sample_1<-sample(1:20,10,replace = TRUE)    
 dplyr::case_when(
@@ -176,8 +178,8 @@ With else if combination, given input of
 3 length triangle sides, define its type:
 equilateral , isosceles and scalene.
 
-Try to include one if, one else and one else if
-or obe if and two else if statements.
+Try to include one if, one else and one else if statements
+or one if and two else if statements.
 Create function for additional challenge.
 
 triangle_type<-function(a,b,c) {
@@ -261,10 +263,10 @@ paste("Diet is maitanied: ",
 Given sample vector, use ifelse to
 define what values are between 200 and 300
 and are divisible by 8 [use %% operator].
-
+sample_1<-sample( 180:320,20,replace = TRUE )
 
 Solution
-sample_1<-sample( 180:320,20,replace = TRUE )
+
 ifelse(sample_1 %% 8==0 & sample_1>200 & sample_1<300,TRUE,FALSE)
 
 Therefore, you can nest multiple statements with ifelse, however
@@ -374,9 +376,8 @@ Solution with case_when:
 Now to attach new vector to data frame:
   emp_data$Emp_Status<-Emp_Status
 
-
 Bonus_Value is formed by base value multiplied by
-number semiannual(6 months) working periods.
+number of semiannual(6 months) working periods.
 Base value for Bonus_Value depends on
 Emp_Status and Department:
   department "a":
