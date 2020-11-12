@@ -6,25 +6,25 @@
 
 
 Combination of for loop and if statements
-is intristic parta of programming languages which allows to 
+is intristic part of programming languages which allows to 
 define output based on multiple states of input variables.
 
 Ability of programmer to adjust for+if to problem under
 consideration clearly indicates more than average 
 coding skills, as weel as helps to find a solution
-to challenge withour calling for in buid
+to challenge without calling for in-buid
 functions to sort, search,manupulate data structures. 
 The latter allows development of algorithmic
 thinking beneficially affecting all aspects of coding.
 
-General template with single condition looks like 
+General template with single condition looks like: 
 for ( loop_control_variable in iterator) {
   if (Conditional_test) {Action if Condition is TRUE}
 }
 
 Assume vector 
 vector_1<-sample(1:20,10)
-I want to print "Even" message if value in vector is even.
+We want to print "Even" message if value in vector is even.
 
 for (i in vector_1){
   if (i %% 2==0) {print(paste(i,"is Even")) }
@@ -34,10 +34,10 @@ for (i in 1:length(vector_1)  ){
   if (i %% 2==0) {print(paste(i,"is Even")) }
 } 
 
-Now use same approach to print
-"Odd" for numners in vector_1 which are odd
+Now use the same approach to print
+"Odd" for numbers in vector_1 which are odd
 
-
+SOLUTION
 for (i in vector_1){
   if (i %% 2!=0) {print(paste(i,"is Odd")) }
 }  
@@ -50,7 +50,7 @@ for (i in 1:length(vector_1)  ){
 #2
 To learn best practice in coding, it is usefull
 to know how to incorporate full if+else
-  statement in for loop , to account for 
+statement in for loop structure , to account for 
 conditions not expected by main Conditional_test
 
 Assume variable j takes sequentially 
@@ -77,9 +77,12 @@ for (i in vector_1) {
 }
 
 Now assume vector:
-  vector_1<-sample(1:20,10)
+vector_1<-sample(1:20,10)
 Now print message "Even" and loop variabe in 
-each iteration of loop, otherwise , print "Odd"
+each iteration of loop , for example "2 is Even",
+otherwise , print "Odd"
+
+SOLUTION
 
 for (i in vector_1) {
   if (i %% 2) {
@@ -91,9 +94,9 @@ for (i in vector_1) {
 # 3
 Assume vector with sample data
 vector_1<-sample(1:30,20)
-I want to print element of vector_1
-if number is between 5 and 15
-and divisible by 3 and count them
+We want to print elements from vector_1
+if element is number between 5 and 15
+and divisible by 3 and count them (store count in ct).
 
 ct=0
 for (i in 1:length(vector_1) ) {
@@ -103,14 +106,14 @@ for (i in 1:length(vector_1) ) {
 }
 print( paste("Total number of elements:",ct)  )
 
-Here besides print() we incorporated variable to
+Here, besides print() we incorporated variable to
 count our values of interest.
 We also incorporated multiple
 conditions to test each value.
 
 Now use the same approach to 
-count total numebr of element divisible by 4,
-between range 30 and 50  or range 70 and 90
+count total number of elements divisible by 4,
+between values (30 and 50) or (range 70 and 90)
 
 vector_1<-sample(1:100,50)
 ct=0
@@ -131,8 +134,8 @@ Assume numbers 345 and 675, if GCD exists, it should
 be at least 2 times lower tham minimum value between 345 and 675,
 otherwise it wount be divisible with remainder of 0 by
 345
-Solutiuon with loop and if is the following:
-  var_1<-345
+Solution with loop and if is the following:
+var_1<-345
 var_2<-675
 loop_end<-min(var_1,var_2)/2
 gcd<-0
@@ -142,16 +145,18 @@ for (i  in  1:(loop_end)   ) {
 }
 print(gcd)
 
-
 Now use similar approach to estimate 
-what number from range from 3 to 20 are considered as
+what numbers from range 3 to 20 are considered 
 prime numbers. Prime numbers are divisible only by 1 and
 itselves. Therefore, number of divisors from 2 till 
 the number itself minus 1 should be 0.
 Multiple solutions are possible.
-YOu can apply sum() function to logical vector
-which resukts from test :
+You can apply sum() function to logical vector
+which results from test :
+
   sum( 5 %% (1:10)==0 )
+
+SOLUTION
 
 for (i in 3:20) {
   if ( sum(i %% (2:(i-1))==0)==0) {
@@ -171,11 +176,9 @@ str_1<-"sample text which contains several vowels"
 Unlike Python, in R we cant loop through 
 string characters or subset particular element like srt_1[2].
 
-First we store each element of srting as separate element
-of character vector:
-  
+First we store each element of string as separate element
+of character vector:  
   str_2<-unlist( strsplit(str_1,split="") )
-
 Unlist is requred to convert list, which result from strsplit(str_1,split=""),
 to vector
 
@@ -188,22 +191,24 @@ for ( i in str_2 ) {
 print(sum_vowels)
 
 We counted number of vowels in sentence.
-%in% check if value referenced in i is contained
+%in% check if value referenced in i variable is contained
 in vector c("a", "e", "i", "o", "u")
 
 
 Now utf8ToInt() function in R would depict
-symbol coding in utf8 system [ingeger value], function works the same way
-as ord() funtion in python.
-Digits are coded with indices from 48 to 57, 1 to 9
+symbol coding in utf8 system [integer value], function works the same way
+as ord() funtion in Python.
+Digits are coded with indices from 48 to 57 for 1 through 9
 respectively.
 
-Now use utf8ToInt() to count number and sum of difits in srt_1 via loop
-and as.numeric() to conver string vertion of digit to number
+Now use utf8ToInt() to count numbers and sum of digits in srt_1 via loop
+and as.numeric() to convert character vector to numeric type[to be able to sum numbers]
 str_1<-"sample23 text whi67ch contains 89several vowels"  
 str_2<-unlist( strsplit(str_1,split="") )  
-if is requred to check if element is
-number.
+Reference number of digits in count_digits and
+sum of digits in sum_digits
+
+SOLUTION
 
 sum_digits<-0
 count_digits<-0
@@ -222,10 +227,10 @@ print( paste(sum_digits,count_digits)  )
 #6 
 Common exercise to practice for and if loops is to write the following
 code:
-  if value in range is multiple of 5, print
+if value in range is multiple of 5, print
 word "Buzz", if value is multiple of 3, print "Fizz",
-if value is multiple of borth numbers , print 
-"FizzBuzz", if statements should be nested via
+if value is multiple of both numbers , print 
+"FizzBuzz", if statements should be connected via
 else if statements.
 Notice, we are talking about 3 possible outcomes:
   
@@ -238,21 +243,22 @@ Notice, we are talking about 3 possible outcomes:
   } 
 
 15 is multiple of 3,5 and both, however, as soon as condition 
-if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
-  we would skip the remaining conditions even though 
-  they satisfy TRUE outcome as well.
-  We should rearrange else if statements to capture first 
-  most general condition.
-  Assume vectore 
+if (15 %% 3 == 0) {print("Fizz")} evaluates to TRUE,
+we would skip the remaining conditions even though 
+they satisfy all of them.
+We should rearrange else if statements to capture first 
+most general condition in first if.
+Assume vectore 
   
   if (15 %% 3 == 0 & 15 %% 5 == 0) {print("FizzBuzz") 
   } else if (15 %% 5 == 0) {print("Buzz")
   } else if (15 %% 3 == 0 ) {print("Fizz") }
   
-  
-  Now write loop with for statement and also add 
-  else transition  in the end to account to remainig numbers
-  which are neither divisible by 3 or 5 or both
+SOLUTION  
+
+Now write loop with for statement and also add 
+else transition  in the end to account for remainig numbers
+which are neither divisible by 3 or 5 or both
   
   for (i in sample(20:100,10)  ) { 
     if (i %% 3 == 0 & i %% 5 == 0) {
@@ -273,11 +279,11 @@ if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
   
   Find sum of all even numbers between 30 and 90
   Combine loop structure and if condition, 
-  sum should be collected in variable sum_even
+  sum should be referenced in variable sum_even
   sum_even<-0
-  
-  
-  Solution
+    
+  SOLUTION
+
   for (i in vector_1) {
     if (i %% 2==0 & i>30 & i<90) {
       sum_even<-sum_even+i
@@ -295,7 +301,7 @@ if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
   and all odd numbers in vector_odd
   
   Example:
-    vector_even<-as.numeric()
+  vector_even<-as.numeric()
   vector_odd<-as.numeric()
   
   for (i in vector_1) {
@@ -309,7 +315,7 @@ if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
   vector_even<-c(vector_even,i)  creates copy of vector
   vector_even and reassignes previous data in vector_even.
   The operation itself could be extremely costly in terms
-  of computatons resources requirements.
+  of computatons resources.
   
   Better solution is to create vectors in advance and 
   each time new  value appers assign it acocording to 
@@ -317,8 +323,9 @@ if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
   total number of values which will occupy vector_even
   or vector_odd.
   
+
   # 9
-  Assume te followinf grading scale:
+  Assume te following grading scale:
     
   Grade	Description
   E:Excellent
@@ -333,8 +340,10 @@ if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
   Now combine loop and if statements to 
   print  grade and its description.
   If statements should be independent of each other
-  [dont use else if o else transition]
+  [dont use else if or else transition]
   
+   SOLUTION
+   
   for (i in vector_grades){
     if (i=="E") {print("Excellent")}
     if (i=="V") {print("Very Good")}
@@ -362,14 +371,14 @@ if (15 %% 3 == 0) {print("Fizz") evaluates to TRUE,
   
   # 10
   Write R program to find numbers between
-  200 and 500 (both included) where each digit of a number is an even number.
+  200 and 500 (both included) where each digit of a number is an even digit.
   0 values are also acceptable.
   Input data is stored in the following vector:
   vector_1<-sample(200:500,20)
   Because we are dealing 
-  with 3 digit numbers ,we can use
+  with 3 digits numbers ,we can use
   %/% for integer division by 100
-  and 10 to extract integer part of divition
+  and 10 to extract integer part of division
   and check if it is even
   
   
