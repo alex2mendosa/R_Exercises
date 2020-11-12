@@ -1,6 +1,10 @@
 
 # http://web.csulb.edu/~amonge/classes/cecs174/BigJava-EarlyObjects/chap06-loops.html#:~:text=Loop%20statements%20usually%20have%20four,step%2C%20and%20a%20loop%20body.
 # 1
+
+!! While loop with positional or value condition
+
+
 Combination of for loop and if statements
 is intristic parta of programming languages which allows to 
 define output based on multiple states of input variables.
