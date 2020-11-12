@@ -115,6 +115,7 @@ Now use the same approach to
 count total number of elements divisible by 4,
 between values (30 and 50) or (range 70 and 90)
 
+SOLUTION
 vector_1<-sample(1:100,50)
 ct=0
 for (i in 1:length(vector_1) ) {
