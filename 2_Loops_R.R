@@ -122,7 +122,7 @@ Full benefits of loops are about to reveal themselves.
 
 ### 5
 Common vectorised R functions like sum(),mean(),
-cumsum(),cumprod() can adress operations which are
+cumsum(),cumprod() can address operations which are
 common in data analysis tasks and involve mathematical operations
 with clear analytical definition, usually performed over
 forward moving calculations.
@@ -160,7 +160,7 @@ vector_1<-c(0,1,1,rep(0,7)) Generate Fibonacci sequence.
 As the first step, you need to generate fourth value
 which would be result of
 sum of 2 previous number:
-  fourth number= third number+second number or
+ fourth number= third number+second number or
 a(i)=a(i-1)+a(i-2) or
 2=1+1, next
 assigh value 2 to fourth index of vector_1.
@@ -242,7 +242,7 @@ for (i in 1:nrow(employee_db) ){
 
 #9
 Assume vector whose length is random:
-  vector_1<-seq(from=1,to=sample(50:100,1),by=3)
+ vector_1<-seq(from=1,to=sample(50:100,1),by=3)
 Now use length() function and seq() to define loop and
 loop through each third element of vector_1
 
@@ -314,7 +314,7 @@ n<-2
 use for loop to calculate sum of the following sequence after
 20 iterations
 n - n^3 + n^5 + n^7 ....
-powers should be repsesented by "i" iterator and summaiton referenced in sum_1 variable
+powers should be repsesented by "i" iterator and summation referenced in sum_1 variable
 use seq() function to define sequence with 2 as increment.
 
 Solution
@@ -326,7 +326,7 @@ for (i in seq(from=1,by=2,along.with = 1:10) ){
 
 #14
 Write a program in R to display prime numbers
-in range 2 till 10
+in range 2 till 10.
 Prime  number is only divisible by 1 and itself.
 As possible solution use the following combination:
   
@@ -348,14 +348,10 @@ Write a program in R to find the sum of the series:
 n<-10
 sm=0
 Multiple solutions are possible including 
-solutions which involves types manupulation [from sting to number]
+solutions which involves types manupulation [from string to number] and
 using as.numeric() function and paste( ,collapse="" )
-for (i in 1:n) {
-  string_val=as.numeric( paste(rep(2,i),collapse = ""))
-  print(string_val)
-  sm=sm+string_val
-}
-print(sm)
+ 
+Loop
 
 
 
