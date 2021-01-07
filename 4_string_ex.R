@@ -13,13 +13,13 @@ q<-"I felt happy because I saw the others were happy and because
     I knew I should feel happy, but I wasn't really happy"
 
 song_1<-"Five little ducks went swimming one day 
-         Over the hills and far away 
-         Mother duck said, 'Quack, quack, quack, quack'
-         But only four little ducks came back
-         Old Mother Duck went out one day,
-         Over the hills and far away,
-         Mother Duck said "Quack, quack, quack, quack
-         And all of those five little ducks came back."
+Over the hills and far away 
+Mother duck said, 'Quack, quack, quack, quack'
+But only four little ducks came back
+Old Mother Duck went out one day,
+Over the hills and far away,
+Mother Duck said 'Quack, quack, quack, quack
+And all of those five little ducks came back."
 print(song_1)
 cat(song_1)
 
@@ -33,6 +33,7 @@ to CHF 86.8 billion (2018: CHF 82.2 billion).
 Net divestments had a negative impact of 0.7% and 
 foreign exchange reduced sales
 by 1.9%."
+
 #https://www.nestle.com/sites/default/files/2020-03/2019-annual-review-en.pdf
 
 
@@ -203,16 +204,151 @@ paste( html_tag(step_1),collapse=" " )
 
 
 
+#19
+#use srtsplit to split sentenc e into 
+#composing charaters
+y<-"There are some things 
+   that are so unforgivable that they make other things easily forgivable."
+
+strsplit(y,split="")
 
 
 
+#19
+#use srtsplit to split words separated witt space  
+y<-"There are some things 
+   that are so unforgivable that they make other things easily forgivable."
+
+strsplit(y,split=" ")
 
 
+#20
+#use srtsplit to split characters by vowels
+y<-"There are some things 
+   that are so unforgivable that they make other things easily forgivable."
+
+strsplit(y,split="[aeiuo]")
 
 
+#21
+#Write a Python function to insert a string 
+#  in the middle of another string of odd length. 
+str_1<-"middle"
+ins_str<-"$RR$"
+split_point<-nchar(str_1)/2
+paste( substr(str_1,1,split_point),ins_str,
+       substr(str_1,split_point+1,nchar(str_1)),sep="" )
 
 
+#22
+#Write a Python code to get a string made 
+#of last characters of each word of another sentece. 
 
+sentence_1<-"Even if they are djinns 
+I will get djinns that can outdjinn them."
+
+part_1<-unlist( strsplit(sentence_1,split="") )
+construct_str<-as.character()
+n<-length(part_1)
+for (i in  1:n) {
+  if (i<n) {
+       if (part_1[i+1] %in% c(" ",",",".")   ) {
+            construct_str<-c(construct_str,part_1[i])
+                                           }
+           } else {construct_str<-c(construct_str,part_1[i])}
+}
+paste(construct_str,collapse="")
+
+#23
+#Write a Python program to
+#split file path anf file name
+
+file_path<-"Home/sally/statusReport/report_20.csv"
+
+loc<-tail( gregexpr("/",file_path)[[1]] ,1)
+paste("Absolute path:",substr(file_path,1,loc) )
+paste("File Name:",substr(file_path,loc+1,nchar(file_path)) )
+
+24
+#Write a Python function to reverses a string 
+q<-"I felt happy because I saw the others were happy and because
+I knew I should feel happy, but I wasnt really happy"
+
+
+paste( rev( strsplit(q,split="")[[1]] ),collapse="")
+
+#25
+#Write a Python function to convert all vowels to uppercase 
+y<-"There are some things 
+that are so unforgivable that they make other things easily forgivable."
+
+part_1<-unlist(strsplit(y,split=""))
+loc<-which(part_1 %in% c("a","e","i","o","u"))
+part_1[loc]<-toupper(part_1[loc])
+paste(part_1,collapse="")
+
+#26
+#Write a Python program to count occurrences of a substring in a string
+
+z<-"Even if they are djinns, 
+I will get djinns that can outdjinn them."
+search_str<-"djinn"
+length( gregexpr("djinn",z)[[1]] )
+
+
+#27
+
+x<-"Lorem ipsum dolor sit amet consectetur 
+adipiscing elit sed do eiusmod tempor incididunt ut
+labore et dolore magna aliqua"
+
+gsub("[aeiou]","",x)
+
+#28
+# Count and sort cahracters with form the sentecne
+
+song_1<-"Five little ducks went swimming one day 
+Over the hills and far away 
+Mother duck said, 'Quack, quack, quack, quack'
+But only four little ducks came back
+Old Mother Duck went out one day,
+Over the hills and far away,
+Mother Duck said 'Quack, quack, quack, quack
+And all of those five little ducks came back."
+Letters<-strsplit(song_1,split="")[[1]]
+Letters<-Letters[-which(Letters %in% c(" ",".",",","'","\n") )]
+data.frame( table( Letters ) ) %>% arrange(desc(Freq) )
+
+
+#29
+#Write a Python program to check if a string contains all letters of the alphabet
+#and display what letters are present and what not 
+
+x<-"Lorem ipsum dolor sit amet consectetur 
+adipiscing elit sed do eiusmod tempor incididunt ut
+labore et dolore magna aliqua"
+
+Letters<-tolower(strsplit(song_1,split="")[[1]])
+Letters<-Letters[-which(Letters %in% c(" ",".",",","'","\n") )]
+db1<-data.frame( table( Letters ) ) %>% arrange(desc(Freq) )
+data.frame(letters,Count=db1$Freq[match(letters ,db1$Letters) ] )
+
+#30
+#Write programm to extract all $ digits form text
+#decimal part of digir contains only 1 number
+report_1<-"2022 was another year
+of strong progress. 
+Our organic growth reached
+12.8%. Real internal growth
+accelerated to 1.9% for the
+full year.Total reported sales increased by 5.6% 
+to CHF 86.8 billion (2018: CHF 82.2 billion).
+Net divestments had a negative impact of 0.7% and 
+foreign exchange reduced sales
+by 1.9%."
+
+
+gregexpr("[0-9]{1,5}.[0-9]{1}%",report_1)
 
 
 
