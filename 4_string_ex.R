@@ -14,7 +14,7 @@ q<-"I felt happy because I saw the others were happy and because
 
 song_1<-"Five little ducks went swimming one day 
          Over the hills and far away 
-         Mother duck said, "Quack, quack, quack, quack
+         Mother duck said, 'Quack, quack, quack, quack'
          But only four little ducks came back
          Old Mother Duck went out one day,
          Over the hills and far away,
@@ -23,6 +23,17 @@ song_1<-"Five little ducks went swimming one day
 print(song_1)
 cat(song_1)
 
+report_1<-"2022 was another year
+of strong progress. 
+Our organic growth reached
+12.8%. Real internal growth
+accelerated to 1.9% for the
+full year.Total reported sales increased by 5.6% 
+to CHF 86.8 billion (2018: CHF 82.2 billion).
+Net divestments had a negative impact of 0.7% and 
+foreign exchange reduced sales
+by 1.9%."
+#https://www.nestle.com/sites/default/files/2020-03/2019-annual-review-en.pdf
 
 
 #1. Write a Python program to calculate the length of a string. 
