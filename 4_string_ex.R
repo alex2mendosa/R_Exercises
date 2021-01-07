@@ -1,4 +1,15 @@
 library(dplyr)
+strsplit
+sub
+gsub
+cat
+substr
+grep
+grepl
+regexpr
+gregexpr
+
+
 
 x<-"Lorem ipsum dolor sit amet consectetur 
 adipiscing elit sed do eiusmod tempor incididunt ut
@@ -58,7 +69,7 @@ paste( substr(x,1,2),substr(x,nchar(x)-1,nchar(x)) )
 #4 Write a Python program to get a string from a given string
 #where first occurrences of its first char 
 $#have been changed to '$'
-x<-"extract first 2 and last 2 characters"
+  x<-"extract first 2 and last 2 characters"
 #gsub replaces all accurances of character
 rep_val<-substr(x,1,1)
 sub(rep_val,"$",x) 
@@ -79,7 +90,7 @@ gsub(rep_val,"$",x)
 s1<-"You are string 1"  
 s2<-"Hello world of data science"  
 paste(substr(s2,1,2),substr(s1,1,2),substr(s2,3,nchar(s2)),
-                                    substr(s1,3,nchar(s1)))
+      substr(s1,3,nchar(s1)))
 
 
 #7
@@ -132,7 +143,7 @@ paste(strsplit(x,split=" ")[[1]][-n],collapse=" ")
 x<-"Aquadetrim"
 
 ext_ch<-function(y,loc=1) {
-return(   strsplit(y,split="")[[1]][loc] )
+  return(   strsplit(y,split="")[[1]][loc] )
 }
 paste( ext_ch(x,nchar(x)) ,  ext_ch(x), substr(x,2,nchar(x)-1),sep="")
 
@@ -252,10 +263,10 @@ construct_str<-as.character()
 n<-length(part_1)
 for (i in  1:n) {
   if (i<n) {
-       if (part_1[i+1] %in% c(" ",",",".")   ) {
-            construct_str<-c(construct_str,part_1[i])
-                                           }
-           } else {construct_str<-c(construct_str,part_1[i])}
+    if (part_1[i+1] %in% c(" ",",",".")   ) {
+      construct_str<-c(construct_str,part_1[i])
+    }
+  } else {construct_str<-c(construct_str,part_1[i])}
 }
 paste(construct_str,collapse="")
 
@@ -348,7 +359,113 @@ foreign exchange reduced sales
 by 1.9%."
 
 
-gregexpr("[0-9]{1,5}.[0-9]{1}%",report_1)
+loc<-gregexpr("[0-9]{1,5}.[0-9]{1}%",report_1)[[1]]
+match_len<-attr(loc,"match.length")-1
+
+for (i in 1:length(loc)) {
+ print( substr(report_1,start=loc[i],stop=loc[i]+match_len[i]) )  
+}
+
+
+#31
+#Write a
+#Python program to count how many times words repreated in string.
+
+q<-"I felt happy because I saw the others were happy and because
+I knew I should feel happy, but I wasn't really happy"
+
+words<-strsplit(q,split=" |,")[[1]]
+data.frame(table(part_1))
+
+
+#32
+#replace word in consectetur to its reverse vertion
+x<-"Lorem ipsum dolor sit amet consectetur 
+adipiscing elit sed do eiusmod tempor incididunt ut
+labore et dolore magna aliqua"
+
+loc<-regexpr("consectetur",x)
+n<-nchar("consecteur")
+rev_version<-paste(rev( strsplit("consecteur", "")[[1]] ),collapse="")
+substr(x,start=loc,stop=loc+n)<-rev_version
+cat(x)
+
+
+#33
+#Write a Python program to compute sum of digits of a given string. 
+#except percentages
+
+report_1<-"2022 was another year
+of strong progress. 
+Our organic growth reached
+12.8%. Real internal growth
+accelerated to 1.9% for the
+full year.Total reported sales increased by 5.6% 
+to CHF 86.8 billion (2018: CHF 82.2 billion).
+Net divestments had a negative impact of 0.7% and 
+foreign exchange reduced sales
+by 1.9%."
+
+
+loc<-gregexpr("[0-9]{1,5}.[0-9]{1}[^%]",report_1)[[1]]
+match_len<-attr(loc,"match.length")-2
+
+for (i in 1:length(loc)) {
+  print( substr(report_1,start=loc[i],stop=loc[i]+match_len[i]) )  
+}
+
+
+#34
+#Write a Python program to remove duplicate words from a given string
+
+
+song_1<-"Five little ducks went swimming one day 
+Over the hills and far away 
+Mother duck said, 'Quack, quack, quack, quack'
+But only four little ducks came back
+Old Mother Duck went out one day,
+Over the hills and far away,
+Mother Duck said 'Quack, quack, quack, quack'
+And all of those five little ducks came back."
+
+words<-strsplit(song_1,split="\\W+")[[1]]
+words_count<-data.frame(table(words)) %>% filter(Freq>1) %>%
+             pull(words) %>% as.character()
+
+for (i in length(words_count)) {
+  gsub(words_count[i],"",song_1)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
