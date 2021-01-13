@@ -16,7 +16,6 @@ setwd("C:\Users\UACecetoAl\Desktop\R_Input")
 Remember that R uses linux like forward slashes
 ,while windows uses backslashes or double backslashes
 
-
 text "C:\Users\UACecetoAl\Desktop\R_Input" is not possible
 due to precence of escape character
 
@@ -36,7 +35,6 @@ treated as escape symbol
 
 To  get it into a name vector you needed to 
 double backslashes them all
-
 setwd("Users\\UACecetoAl\\Desktop\\R_Input")
 but again, here we manually double backlashes
 
@@ -63,45 +61,53 @@ current working directory
 Run list.files() with part= argumetn
 diferent from working directory
 
-list.files(r"(N:\Projects\1_SL_Dep_Reports\1_TTS_2019_2020\TTS_Report_By_Business_FV_2020)")
+list.files(r"(C:\Users\UACecetoAl\Desktop\STD_REPORTS)")
 
 #5 Create in any folder 5 files with names
-File_delete_1.csv,
-File_keep_2.csv,File_keep+_3.csv,File_delete_4.csv,File_keep_5.csv
+run the following command to create 10 files for exercises
+in working directory
+file.create( paste("File",sample(c("delete","keep","modify"),10,replace=TRUE),
+        sample(1:10,10,replace=FALSE),sep="_") )
+Notice that if we randomly creatre files with same name,
+only unique would be displayed, hterefore sample(1:10,10,replace=FALSE)
+is used to make all fiules names unique
 
 list.files has pattern argument which allow to return 
 files names whci meet certain criteria
 Specify, expression to return files which contain 
-+ or delete word
+delete word or odd number from 2 to 6
 lile
 
-list.files(path=r"(N:\Projects\1_SL_Dep_Reports)",
-           pattern="delete|\\+")
+list.files(path=r"(C:\Users\UACecetoAl\Desktop\R_Input)",
+           pattern="delete|[2,4,6]+")
 
 
-#6 Modify expresison below to retun absolute paths
+#6 Modify expresison above to retun absolute paths
 
-list.files(path=r"(N:\Projects\1_SL_Dep_Reports)",
-           pattern="delete|\\+")
+list.files(path=r"(C:\Users\UACecetoAl\Desktop\R_Input)",
+           pattern="delete|[2,4,6]+")
 Why \\ are returned?
+  
+list.files(path=r"(C:\Users\UACecetoAl\Desktop\R_Input)",
+             pattern="delete|[2,4,6]+",full.names=TRUE)  
+  
 
-list.files(path=r"(N:\Projects\1_SL_Dep_Reports)",
-           pattern="delete|\\+",full.names=TRUE)
+#7 run the following command
 
+file.create( paste("File","DELETE",10) )
 
-#7 Create in any folder 5 files with names
-File_delete_1.csv,
-File_keep_2.csv,File_keep+_3.csv,File_DELETE_4.csv,File_keep_5.csv
+list.files(path=r"(C:\Users\UACecetoAl\Desktop\R_Input)",
+           pattern="delete|[2,4,6]+")
 
-list.files(path=r"(N:\Projects\1_SL_Dep_Reports)",
-           pattern="delete|\\+")
 Wil lnot return File_DELETE_4.csv, modify 
 ignore.case to return all names ingoring case
-list.files(path=r"(N:\Projects\1_SL_Dep_Reports)",
-           pattern="delete|\\+",ignore.case = TRUE)
+which fit our pattern
+list.files(path=r"(C:\Users\UACecetoAl\Desktop\R_Input)",
+           pattern="delete|[2,4,6]+",ignore.case = TRUE)
+
 
 #8
-file.choose() allows to choose file interactively
+file.choose() allows to choose file name interactively
 Run file.choose(), which directory is initiated to 
 select file
 
@@ -112,31 +118,53 @@ setwd(r"(N:\Projects\1_SL_Dep_Reports)")
 getwd()
 file.choose()
 
-file.choose() command opens working directory
+file.choose() command now opens another directory
+which we previously marked as working. 
+which you can define with file.choose()
+
 
 
 #9
 after file is interactively selected 
 r return is full name, whcih can be assignewd to
-variable and later used in code
+variable and later used in code to specify which file to use
 f1_name<-file.choose()
-read.csv(f1_name)
+read.csv(f1_name) % to upload data
 
 use file.choose() to select file you prefer and srote the 
 data in contains in variable variable_1
 
 
+
+
 #10
-use 
 use file.create() to create 3 files 
-named Dummy_file with extensions csv,xlsx,Py
+named Dummy_file with extensions csv,xlsx,txt
+in wrokinf dorectiy
 
 file.create("Dummy_file.csv")
 file.create("Dummy_file.xlsx")
 file.create("Dummy_file.Py")
 
-##
-11
+##11
+Run the following command to create
+directory in working directiry
+dir.create("Dymmy_Dir")
+Modift  example from  ex 5 to create 20
+files which randomly define names and file extentions
+[txt, csv, xlsx]
+Files shoulkd be created in Dymmy_Dir
+
+file.create( paste("Dymmy_Dir/","File",sample(c("delete","keep","modify"),20,replace=TRUE),
+                   sample(1:20,20,replace=FALSE),
+                   sample(c(".txt",".csv",".xlsx"),20,replace=TRUE),
+                   sep="_")   )
+#if action is about ot be performed in working directir folder
+# no need to estimate fool file path
+
+
+#12
+
 setwd(r"(C:\Users\UACecetoAl\Desktop\R_Input)")
 In single expresion with
 file.create(), create 2 files in working dorectory of
@@ -145,7 +173,7 @@ different  type
 file.create("Dummy_file.csv","Dummy_file.xlsx")
 
 
-##12
+##13
 Use paste() fucntion to 
 concatenate file patha nd file name to specify location 
 of directory to which file should be created
@@ -153,7 +181,29 @@ of directory to which file should be created
 file.create( paste(r"(C:\Users\UACecetoAl\Desktop\R_Input\1_Code Sample)","Dummy_file.csv",
                    sep="\\")  ) 
 
-##13
+#14
+Use file.create() fucntion to create 2 files ony any extention tou prefer in 
+2 directries , ecxept workig direcitry
+
+file.create( paste(r"(C:\Users\UACecetoAl\Desktop\R_Input)","Dummy_file.csv",sep="\\"),
+             paste(r"(C:\Users\UACecetoAl\Desktop\R_Input\Dymmy_Dir)","Dummy_file.csv",sep="\\")
+             ) 
+
+
+
+#15
+R wount crete 2 files with same name and extention in same 
+directiry, check how many fileas are
+generated by the following expresision:
+
+file.create( paste("File",sample(c("delete","keep"),10,replace=TRUE),
+                     sample(1:10,10,replace=TRUE),sep="_") )
+  
+#We specified 10 samples by lower number of files was generated
+as no files with same and exrention are possible
+  
+  
+#16
 
 file.exists()
 # returns a logical vector indicating whether the files named by its argument exist
@@ -178,28 +228,188 @@ file.exists(r"(C:\Users\UACecetoAl\Desktop\Phone_Data\Calendar\QQE6B3063.jpg)",
             r"(C:\Users\UACecetoAl\Desktop\cv\Keywords.docx)" )
 
 
-#15
-file.remove() #attempts to remove the files named in its argument
-# access to file shoukd be granted,
-#by default file is checked in working directory
 
-Use file.remove() to remove DUMMY.csv frow wd
+#15 file.create and file.exist  will produce 
+warning message is we apply action to 
+directiry we dont have access to
+
+file.create( r"(N:\Projects\Reports\Dummt.csv)" ) #reason 'Permission denied'
+file.exists( r"(N:\Projects\Reports\Dummt.csv)" )  # False
+
+
 
 
 #16
+file.remove() #attempts to remove the files named in its argument
+# access to file shoukd be granted,
+#by default file is checked in working directory
+file.create("DUMMY.csv")
+Use file.remove() to remove DUMMY.csv frow wd
+file.remove("DUMMY.csv")
+# be aware that file is deleted permanently, trash bin wont contain respectiver file
+
+#16
 Run the command 
-file.create( paste(sample(1:5,1),"DUMMY.csv",sep="_")   )
 
-Use  list.files() to delete file which contain 
-Dummy in ints name, as full name is andom 
+file.create( paste("Dymmy_Dir/","File",sample(c("delete","keep","modify"),20,replace=TRUE),
+                   sample(1:20,20,replace=FALSE),
+                   sample(c(".txt",".csv",".xlsx"),20,replace=TRUE),
+                   sep="_")   )
+allows list.files with patterm
+argumetn to specify expresisin to delete files whole name mathes 
+regular expression,
+Now delete all files with single 
+file.remove() by adjustinf pattern argumetn in 
+list.files(), notice you need to specify directory 
+where files are located
 
-file.remove( list.files(pattern="DUMMY") )
+setwd( r"(C:\Users\UACecetoAl\Desktop\R_Input\Dymmy_Dir)" )
+getwd()
+list.files( pattern="_File_delete_" )
+file.remove(   list.files( pattern="_File_delete_" )      )
+
+
+#17
+Use file.remove to delete files in 2 comlately different direcotris
+,except working directoty
 
 
 
+#18
+setwd( r"(C:\Users\UACecetoAl\Desktop\R_Input)"  )
+getwd()
+
+Run the code to perform the following, if DUMMY.csv
+is present in workig directry, 
+delete it, otherwise create it
+
+if ( file.exists("Dummy.csv")==TRUE ) {
+  file.remove("Dummy.csv")
+ }  else { file.create("Dummy.csv") }
+
+#19
+
+#let us check if file.create  is case sensetive
+
+file.create("Dummy.csv")
+file.create("DuMmY.csv")
+file.create("dummy.csv")
+Only dsingle file is created, 
+name is same as for first file.create("Dummy.csv"),
+names generated by 
+file.create("DuMmY.csv")
+file.create("dummy.csv") are all treated 
+as identical to Dummy
+
+Therefore i is recommendet to 
+separate the files by different bane not diffetent cases
+
+#20
+
+#let us check if file.create  is case sensetive
+
+ 
+Therefore, file exist is not case sensetive, we need to adjust 
+ingore.case argument
+file.exists("Dummy.csv",ignore.case =TRUE)
+file.exists("DUMMY.csv",ignore.case=TRUE)
+
+# DummY.csv" and ignore.case = FALSE are both consifered as file names
+#we cant supply ignore.case argument
+#here how we can delete multiple files 
+# Case-insensitive file systems are the norm on Windows and macOS
+
+sample(   c( file.create("DuMmY.csv"), 
+             file.create("Dummy.csv"),
+             file.create("dummy.csv") ),1)
+We randomly crete file with names diffrent by cases
+
+Solution is to call for list.files
+c("Dummy.csv","DuMmY.csv","dummy.csv") %in% list.files(ignore.case = FALSE)
+Will indicate name whih exists ,
+ therefore
+file.remove(), file.create(), file.exists()
+behave like case insensetive system.
+
+
+#21
+setwd( r"(C:\Users\UACecetoAl\Desktop\R_Input\Dymmy_Dir)" )
+getwd()
+file.create("I_Dont_like_my_name.csv")
+file.create("Dummy_file_2.csv")
+use file.rename() to rename
+file, 2 arguemnt are required, 
+first full path to the file with original name,
+same path to the file with new name
+file.rename(r"(C:\Users\UACecetoAl\Desktop\R_Input\Dymmy_Dir\I_Dont_like_my_name.csv)",
+            r"(C:\Users\UACecetoAl\Desktop\R_Input\Dymmy_Dir\This_name_is_Better.csv)")
+file.rename(r"(C:\Users\UACecetoAl\Desktop\R_Input\Dymmy_Dir\I_Dont_like_my_name.csv)",
+            "This_name_is_Better.csv")
+#second expression works if we are dealing with files in same directory,
+#otherwise , full name specification is required
 
 
 
+#22
+setwd( r"(C:\Users\UACecetoAl\Desktop\R_Input\Dymmy_Dir)" )
+file.create( paste("File",sample(c("delete","keep","modify"),20,replace=TRUE),
+                   sample(1:20,20,replace=FALSE),
+                   sample(c(".txt",".csv",".xlsx"),20,replace=TRUE),
+                   sep="_")   )
+
+Now rename of files whch contain "delete" to "Pending_Status",
+list.files might be helpfull
+Dont forget that files with same names are not possible in same direcotry
+
+getwd()
+list.files(pattern="delete")
+file.rename( list.files(pattern="delete"),"Pending_Status"   )
+
+we can try to loop thtrough
+n<-length( list.files(pattern="delete") )
+for (i in 1:n )  {
+  file.rename( list.files(pattern="delete")[i], paste("Pending_Status",i,sep="_")     )
+}
+# will fail as list.files(pattern="delete")[i] depend on i
+# and index of delete values which changes after each 
+#file.rename execution
+
+#while loop would be a better choice
+n<-length( list.files(pattern="delete") )
+i<-1
+names_list<-list.files(pattern="delete")
+while (i<=n)  {
+  file.rename( names_list[i], paste("Pending_Status",i,sep="_")     )
+  i<-i+1
+}
+
+
+#23
+file.create("mtcars.csv")
+write.csv(mtcars,"mtcars.csv")
+
+Now use rename fucntion to change the extention of file 
+from csv to txt
+file.rename("mtcars.csv","mtcars.txt")
+
+
+# 24
+Asume path name
+path_1<-r"(C:\Users\UACecetoAl\Desktop\R_Input\Dymmy_Dir\File_keep_19_.csv)"
+
+Now use regexp to extract name of file
+
+loc<-tail( gregexpr("\\\\",path_1)[[1]] ,1)+1
+substr( path_1,loc,nchar(path_1) )
+
+
+# 25
+Asume path name
+path_1<-r"(C:\Users\UACecetoAl\Desktop\R_Input\Dymmy_Dir\File_keep_19_.csv)"
+
+Use
+basename() to extract file name
+basename(path_1)
 
 
 
