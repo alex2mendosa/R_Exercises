@@ -1,43 +1,47 @@
 #####################
 https://www.geeksforgeeks.org/file-handling-in-r-programming/
-
+  
 1 Use getwd() function to check filepath to 
 current working directory, what type of data
 fucntion returns? Notice
 that "/" is used as a directory separator
 
+
 getwd()
 typeof(getwd)
+
 
 #####################
 2 Use setwd() function set new working directory.
 First specify argument as character. For second task 
-use variable which refers to character as argument.
+use variable which refers to character as argument
+of setwd().
 
-setwd("C:\Users\UACecetoAl\Desktop\R_Input")
+setwd("C:\Users\LENOVO\Desktop\Code_Horoso\R_practice")
 Remember that R uses linux like forward slashes
 ,while windows uses backslashes or double backslashes
 
-text "C:\Users\UACecetoAl\Desktop\R_Input" is not possible
-due to precence of escape character
+text "C:\Users\LENOVO\Desktop\Code_Horoso\R_practice" is not possible
+due to precence of escape character \
 
 It is also impossible to assgin it to variabe
-file_path_1<-"C:\Users\UACecetoAl\Desktop\R_Input"
+
+file_path_1<-"C:\Users\LENOVO\Desktop\Code_Horoso\R_practice"
 
 Solution is the following, manually change backslashes
 to forward slashes
 
-setwd("C:/Users/UACecetoAl/Desktop/R_Input")
+setwd("C:\Users\LENOVO\Desktop\Code_Horoso\R_practice")
 
-We can use gsub() to format Windows pathif
+We can try to use gsub() to format Windows path if
 it was directly copied from Windows Address bar
-gsub("\\","/","Users\UACecetoAl\Desktop\R_Input",fixed=TRUE )
+gsub("\\","/","C:\Users\LENOVO\Desktop\Code_Horoso\R_practice",fixed=TRUE )
 is not appropriate as backslashes in file path string is 
 treated as escape symbol
 
 To  get it into a name vector you needed to 
 double backslashes them all
-setwd("Users\\UACecetoAl\\Desktop\\R_Input")
+setwd("C:\\Users\\LENOVO\\Desktop\\Code_Horoso\\R_practice")
 but again, here we manually double backlashes
 
 We need to solve the following , how to use
@@ -45,66 +49,72 @@ copied file path from Windows as input
 for setwd() format,threrefore we need to specify
 raw e string , which is possible
 with later 4.0 R vertion
-r"(C:\Users\UACecetoAl\Desktop\R_Input)"
+r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)"
 will add double backslashes and it means we can 
 apply gsub fucntion
 
-setwd(r"(C:\Users\UACecetoAl\Desktop\R_Input\)")
+setwd(r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)")
 
 What if directory does not exist
-setwd(r"(C:\Users\UACecetoAl\Desktop\R_Input\Dummy_Dir)")
-cannot change working directory is thrown
+setwd(r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice\Dummy_Dir)")
+cannot change working directory ,essage is thrown
+
 
 #3 
 Run list.files() to generate list of files in 
 current working directory
 #
 #4 
-Run list.files() with part= argumetn
+Run list.files() with path argumetn
 diferent from working directory
 
-list.files(r"(C:\Users\UACecetoAl\Desktop\STD_REPORTS)")
+list.files(r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice))")
 
-#5 Create in any folder 5 files with names
+#5 Yse file.creatre to create 10 files 
+replicating following example
 run the following command to create 10 files for exercises
 in working directory
 file.create( paste("File",sample(c("delete","keep","modify"),10,replace=TRUE),
-        sample(1:10,10,replace=FALSE),sep="_") )
+                   sample(1:10,10,replace=FALSE),sep="_") )
 Notice that if we randomly creatre files with same name,
-only unique would be displayed, hterefore sample(1:10,10,replace=FALSE)
-is used to make all fiules names unique
+only files with unique would be displayed, 
+therefore sample(1:10,10,replace=FALSE)
+is used to make all files  names unique because non out of 10
+numbers is repeated
 
-list.files has pattern argument which allow to return 
-files names whci meet certain criteria
+list.files has pattern argument  allows to return 
+files names, which meet certain criteria
 Specify, expression to return files which contain 
 delete word or odd number from 2 to 6
 lile
 
-list.files(path=r"(C:\Users\UACecetoAl\Desktop\R_Input)",
+list.files(path=r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)",
            pattern="delete|[2,4,6]+")
 
 
 #6 Modify expresison above to retun absolute paths
+usinf full.names argumenr
 
-list.files(path=r"(C:\Users\UACecetoAl\Desktop\R_Input)",
+list.files(path=r"(CC:\Users\LENOVO\Desktop\Code_Horoso\R_practice)",
            pattern="delete|[2,4,6]+")
 Why \\ are returned?
   
-list.files(path=r"(C:\Users\UACecetoAl\Desktop\R_Input)",
+  list.files(path=r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)",
              pattern="delete|[2,4,6]+",full.names=TRUE)  
-  
+
 
 #7 run the following command
 
 file.create( paste("File","DELETE",10) )
 
-list.files(path=r"(C:\Users\UACecetoAl\Desktop\R_Input)",
+list.files(path=r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)",
            pattern="delete|[2,4,6]+")
 
-Wil lnot return File_DELETE_4.csv, modify 
+Will not return File_DELETE_4.csv as by default,
+list.files is case sensetive, modify 
 ignore.case to return all names ingoring case
 which fit our pattern
-list.files(path=r"(C:\Users\UACecetoAl\Desktop\R_Input)",
+list.files(path=r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)",
            pattern="delete|[2,4,6]+",ignore.case = TRUE)
 
 
@@ -128,7 +138,7 @@ which you can define with file.choose()
 
 #9
 after file is interactively selected 
-r return is full name, whcih can be assignewd to
+r return its full name, whcih can be assigned to
 variable and later used in code to specify which file to use
 f1_name<-file.choose()
 read.csv(f1_name) % to upload data
@@ -137,18 +147,30 @@ use file.choose() to select file you prefer and srote the
 data in contains in variable variable_1
 
 
-
-
 #10
 use file.create() to create 3 files 
 named Dummy_file with extensions csv,xlsx,txt
-in wrokinf dorectiy
+in wrokinf directory
 
 file.create("Dummy_file.csv")
 file.create("Dummy_file.xlsx")
 file.create("Dummy_file.Py")
 
-##11
+
+
+#11
+
+setwd(r"(C:\Users\UACecetoAl\Desktop\R_Input)")
+In single expresion with
+file.create(), create 2 files in working dorectory of
+different  type
+
+file.create("Dummy_file.csv","Dummy_file.xlsx")
+
+
+
+
+##12
 Run the following command to create
 directory in working directiry
 dir.create("Dymmy_Dir")
@@ -161,18 +183,11 @@ file.create( paste("Dymmy_Dir/","File",sample(c("delete","keep","modify"),20,rep
                    sample(1:20,20,replace=FALSE),
                    sample(c(".txt",".csv",".xlsx"),20,replace=TRUE),
                    sep="_")   )
-#if action is about ot be performed in working directir folder
-# no need to estimate fool file path
+#if action is about ot be performed in working directory folder
+# ,no need to specify Dymmy_Dir/", as by default, 
+R performs action in working directory
 
 
-#12
-
-setwd(r"(C:\Users\UACecetoAl\Desktop\R_Input)")
-In single expresion with
-file.create(), create 2 files in working dorectory of
-different  type
-
-file.create("Dummy_file.csv","Dummy_file.xlsx")
 
 
 ##13
@@ -189,7 +204,7 @@ Use file.create() fucntion to create 2 files ony any extention tou prefer in
 
 file.create( paste(r"(C:\Users\UACecetoAl\Desktop\R_Input)","Dummy_file.csv",sep="\\"),
              paste(r"(C:\Users\UACecetoAl\Desktop\R_Input\Dymmy_Dir)","Dummy_file.csv",sep="\\")
-             ) 
+) 
 
 
 
@@ -197,14 +212,14 @@ file.create( paste(r"(C:\Users\UACecetoAl\Desktop\R_Input)","Dummy_file.csv",sep
 R wount crete 2 files with same name and extention in same 
 directiry, check how many fileas are
 generated by the following expresision:
-
-file.create( paste("File",sample(c("delete","keep"),10,replace=TRUE),
-                     sample(1:10,10,replace=TRUE),sep="_") )
   
+  file.create( paste("File",sample(c("delete","keep"),10,replace=TRUE),
+                     sample(1:10,10,replace=TRUE),sep="_") )
+
 #We specified 10 samples by lower number of files was generated
 as no files with same and exrention are possible
-  
-  
+
+
 #16
 
 file.exists()
@@ -287,7 +302,7 @@ delete it, otherwise create it
 
 if ( file.exists("Dummy.csv")==TRUE ) {
   file.remove("Dummy.csv")
- }  else { file.create("Dummy.csv") }
+}  else { file.create("Dummy.csv") }
 
 #19
 
@@ -310,7 +325,7 @@ separate the files by different bane not diffetent cases
 
 #let us check if file.create  is case sensetive
 
- 
+
 Therefore, file exist is not case sensetive, we need to adjust 
 ingore.case argument
 file.exists("Dummy.csv",ignore.case =TRUE)
@@ -329,7 +344,7 @@ We randomly crete file with names diffrent by cases
 Solution is to call for list.files
 c("Dummy.csv","DuMmY.csv","dummy.csv") %in% list.files(ignore.case = FALSE)
 Will indicate name whih exists ,
- therefore
+therefore
 file.remove(), file.create(), file.exists()
 behave like case insensetive system.
 
@@ -412,6 +427,64 @@ path_1<-r"(C:\Users\UACecetoAl\Desktop\R_Input\Dymmy_Dir\File_keep_19_.csv)"
 Use
 basename() to extract file name
 basename(path_1)
+
+
+#26
+USe file.copy() to copy file from working directiry to folder located in 
+workig direcoty 
+
+#27
+USe file.copy() to copy file from working directiry to folder outsude working 
+direcotry, remeber , it is not requred to specify 
+full file path for workinf directory
+
+
+#28
+USe file.copy() to copy file from non working direcoty o 
+another non working directory
+
+#Now assume direcoty already contains file named ,
+now check if the file is replaced if the file with same 
+named but with UPPER case is copid to the same directory
+
+file.copy("1_MARK1.txt","Dymmy_Dir\\1_MARK1.txt")
+
+
+
+
+#29
+USe file.copy() to copy file from non working direcoty o 
+another non working directory
+
+#Now assume direcoty already contains file named ,
+now check if the file is replaced if the file with same 
+named and case is copid to the same directory
+
+file.copy("1_MARK1.txt","Dymmy_Dir\\1_MARK1.txt")
+You can see by modification time that after we runn
+command nothng changes, file with same name is not overwritten
+
+#230
+USe file.copy() to copy file from non working direcoty o 
+another non working directory
+
+#Now assume direcoty already contains file named ,
+now check if the file is replaced if the file with same 
+named and case is copid to the same directory
+
+file.copy("1_MARK1.txt","Dymmy_Dir\\1_MARK1.txt",overwrite = TRUE)
+You can see by modification time that after we runn
+command nothng changes, file with same name is not overwritten
+
+
+
+#
+file.info("Dummy_file.csv")
+
+
+#
+a<-file.info("Dummy_file.csv")
+a$mtime
 
 
 
