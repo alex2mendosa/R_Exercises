@@ -1,0 +1,53 @@
+Using Python as a Calculator	
+	Type of Numbers
+	Arithmetic Operators
+	Python Specific Operators
+	Fraction And Decimal related functions
+	
+Comments	
+
+Simple Variables	
+	Rules for variables names
+	Storing numbers in variable
+	Special double  assigment
+	
+Strings	
+	how to define sting
+	print string
+	Indexing in Python
+	adding sting together
+	subsetting and slicing stings
+	
+Type convertion and verification	
+
+Lists	Create List
+	List Subsetting
+	Adding 2 lists
+	Nested lists and subsetting
+	range fungiotn
+	
+Lofical and reltiona Operators	
+
+Methods	
+	Sting Essential Methods
+	Lists Essential Methods
+	
+Control Flow	
+	If statements
+	For statements
+	While statemetns
+	Application of range fucntiomn
+	keywords for Control flow[breake , continue]
+	
+Lists	
+	More advances Lists methods
+	Lsit comprehentions
+	del statemnt
+	filtering witj boolean operator
+	
+Additional Classes	
+	Sets definition
+	Sets Methods
+	Dict
+	Dicxt Methods
+	Foop through sets and dictionaries
