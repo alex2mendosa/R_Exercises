@@ -1,53 +1,74 @@
-Using Python as a Calculator	
-	Type of Numbers
+Topic	Subsection 
+Using Python as Calculator	
+	Numeric Types
 	Arithmetic Operators
-	Python Specific Operators
+	Python Specific Arithmetic Operators
 	Fraction And Decimal related functions
-	
-Comments	
-
-Simple Variables	
-	Rules for variables names
+Showing Result  	
+	Use of Print Function 
+	Common Line Separators
+	Comments
+Manipulations with Variables	
+	Rules for Variables names
 	Storing numbers in variable
-	Special double  assigment
-	
+	Special  assigment methods
+	Variables as part of formulas
 Strings	
-	how to define sting
-	print string
-	Indexing in Python
-	adding sting together
-	subsetting and slicing stings
-	
-Type convertion and verification	
-
-Lists	Create List
-	List Subsetting
-	Adding 2 lists
+	How to express String
+	print() function
+	String Indexing
+	String Slicing
+	Concatenate Operation
+	Subsetting and Slicing
+Type  Convertion and Casting 	
+	Implicit Type Conversion
+	Explicit Type Conversion
+Lists Part 1	
+	How to Design a List
+	List Indexing and Subsetting
+	Adding and deleting Elements
 	Nested lists and subsetting
-	range fungiotn
-	
-Lofical and reltiona Operators	
-
+	Application of range() function
+Python User Input	
+	Application of input statement
+	Casting of Input Statement
+Logical and Relational Operators	
+	Python Relational Operator
+	Python Logical Operators
+	Slicing and  Logical Vector 
 Methods	
 	Sting Essential Methods
+	Application of math module methods
 	Lists Essential Methods
-	
-Control Flow	
-	If statements
-	For statements
-	While statemetns
-	Application of range fucntiomn
+	Finding what methods a Python object has
+Control Flow Part 1	
+	Conditional control flow
+	else Clauses for if
+	Indentation 
+	Loops in Python
+	for statement
+	range() function for indexing
+Control Flow Part 2	
+	while statement
+	else Clauses for loops
 	keywords for Control flow[breake , continue]
 	
-Lists	
-	More advances Lists methods
-	Lsit comprehentions
-	del statemnt
-	filtering witj boolean operator
-	
+Lists Part 2	
+	Advanced Lists methods
+	List Comprehension
+	del statement
+	Loop through Lists
 Additional Classes	
-	Sets definition
+	Sets Definition
 	Sets Methods
-	Dict
-	Dicxt Methods
-	Foop through sets and dictionaries
+	Dictionaries
+	Dictionaries Methods
+	Looping Techniques
+Functions	
+	Syntax of Function
+	How to call a Function
+	Docstrings
+	return  statement
+	Global and Local Variables
+	Lambda Functions
+Python Workbook Session	
