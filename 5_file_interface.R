@@ -1,35 +1,39 @@
 #####################
 https://www.geeksforgeeks.org/file-handling-in-r-programming/
-library(dplyr)  
-  
-  
+  library(dplyr)  
+
+
 1 
 Use getwd() function to check filepath to your 
 current working directory, what type of data
-function returns? Notice
+function getwd() returns? Can you store its output to variable? Notice
 that "/" is used as a directory separator
 
 
 getwd()
-typeof(getwd)
+typeof(getwd())
+Output is character which can be assigned to variable.
 
 
 #####################
 2 
 setwd() function sets new working directory.
-First specify argument as character, ex. setwd("dirname")
-For second task,assign directory name to variable as
+If you perform operations over files located in
+working directory , there is no need to specify absolute path.
+To set working directory , use absolute path.
+First, specify argument as character, ex. setwd("dirname").
+For second task,assign directory name to variable and
 use it as input for setwd()
 
 setwd("C:\Users\LENOVO\Desktop\Code_Horoso\R_practice")
 Remember that R uses linux like forward slashes
 ,while windows uses backslashes or double backslashes
+That why you may encounter error.
 
 text "C:\Users\LENOVO\Desktop\Code_Horoso\R_practice" 
 is not possible due to presence of escape character ""\""
 
 It is also impossible to assign it to variabe
-
 file_path_1<-"C:\Users\LENOVO\Desktop\Code_Horoso\R_practice"
 
 Solution is the following, manually change backslashes
@@ -41,33 +45,34 @@ We can try to use gsub() to format Windows path, if
 it was directly copied from Windows Address bar:
 gsub("\\","/","C:\Users\LENOVO\Desktop\Code_Horoso\R_practice",fixed=TRUE )
 Unfortunately, it is not appropriate as backslashes 
-in file path string are treated as escape symbols
+in file path string are treated as escape symbols.
 
-To transform it into named vector we require to 
+To transform it into named vector, we require to 
 double backslashes them all
 setwd("C:\\Users\\LENOVO\\Desktop\\Code_Horoso\\R_practice")
-but again, here we manually double backlashes
+but again, here we manually switch to double backlashes.
 
-Please not that of directory undicated as argument
-of setwd does not exist, "cannot change working directory"
-message appears
+Please note that if directory undicated as argument
+of setwd() does not exist, "cannot change working directory"
+message appears.
 
 We need to solve the following , how to use
 copied file path from Windows as input
 for setwd() ,threfore, we need to specify
 raw e string , which is possible
-with later 4.0 R version with r keyword
+with later 4.0 R version with "r" keyword
 r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)"
 Expression will add double backslashes and it means we can 
-combine r and setwd()
+combine "r" and setwd()
 
 setwd(r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)")
 
 
 #3 
-Run list.files() to generate list of files in your 
-current working directory, what thpe of data 
-list.files generates
+Run list.files() to generate vector of files names in your 
+current working directory, what type of data 
+list.files() generates?
+  
 setwd( r"(C:\Users\LENOVO\Desktop\R_Input)" )
 typeof( list.files() )
 
@@ -76,25 +81,27 @@ typeof( list.files() )
 Run list.files() with path argument
 diferent from working directory.
 You can use any folder for which
-you have access
+you have access.
 
-list.files(r"(D:\Sample_Templates\ML_Code_Python)")
+list.files(r"(D:\Sample_Templates\ML_Code_Python)") #or
+list.files("D:/Sample_Templates/ML_Code_Python")
 
 
 #5 
 USe file.create() function to create
-15 files replicating following example:
-
-file.create( paste("File",sample(c("regression_log"),15,replace=TRUE),
-                   sample(1:15,15,replace=TRUE),sep="_") )
-Code should randomly generates 
+15 files running the following code:
+  
+  file.create( paste("File",sample(c("regression_log"),15,replace=TRUE),
+                     sample(1:15,15,replace=TRUE),sep="_") )
+Code should randomly generate
 15 files with diffetent names.
 Why we creted less that 15 files?
-
+  
 Notice,  sample(1:15,15,replace=TRUE) means that
-ocassionally same numbers would be generated,as
-we sample with replacement, therefore , we would
-ocassionally generate files with the same name
+ocassionally same numbers would be generated,because
+we sample with replacement, therefore, we would
+ocassionally generate files with the same name in 
+same directory
 
 paste("File",sample(c("regression_log"),15,replace=TRUE),
       sample(1:15,15,replace=TRUE),sep="_") 
@@ -105,11 +112,11 @@ paste("File",sample(c("regression_log"),15,replace=TRUE),
 But Windows cant keep files of same name and extention in
 same directory, consequently,
 only files with unique names would be displayed, 
-and we would crete less that 15 files
+and we would create less that 15 files.
 
-therefore sample(1:15,15,replace=FALSE)
-is used to make all files names unique because non out of 15
-numbers is repeated
+Therefore, sample(1:15,15,replace=FALSE)
+is used to make all files names unique, because non out of 15
+numbers are repeated
 
 
 
@@ -117,13 +124,13 @@ numbers is repeated
 USe file.create() function to create
 15 files replicating the following example:
   
-file.create( paste("File",sample(c("delete","keep","modify"),15,replace=TRUE),
+  file.create( paste("File",sample(c("delete","keep","modify"),15,replace=TRUE),
                      sample(1:15,15,replace=FALSE),sep="_") )
 Why we manages to create all 15 files?
-
-All names we generated are unique due to 
-sample(1:15,15,replace=FALSE), we 
-dont use names which were previously designated
+  
+All names we generate are unique due to 
+sample(1:15,15,replace=FALSE), we consequently generate
+files and designate unique names.
 
 
 #7 
@@ -132,43 +139,47 @@ of files located in working directory
 by adjusting full.names argument
 
 list.files(path=r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)",
-             full.names=TRUE)  
+           full.names=TRUE)  
 
 
 #8
-list.files() function offers pattern= argument
-which allows to specify pattern used to select files.
-Only file names which match the pattern will be returned.
+list.files() function offers pattern argument
+which allows to specify pattern used to select files
+for output vector.
+Only files names which match the pattern will be returned.
 
 list.files(path=r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)",
            pattern="delete|[2,4,6]")
-# if we are referring to working directory,
+
+If we are referring to files in working directory,
 full path is not required
+
 list.files(pattern="delete|[2,4,6]")
 
 
 
 #9 
-Run the following 2 commands
+Run following 2 commands
 file.create( paste("File","DELETE",10) )
 
 list.files(path=r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)",
            pattern="delete|[2,4,6]")
 
 Last Expression Will not return File_DELETE_4.csv as by default,
-list.files is case sensitive, modify 
+list.files() is case sensitive, modify 
 ignore.case argument to return all names ingoring case
 which fit our pattern
+
 list.files(path=r"(C:\Users\LENOVO\Desktop\Code_Horoso\R_practice)",
            pattern="delete|[2,4,6]",ignore.case = TRUE)
 
 
-#9
+#10
 file.choose() allows to choose file name interactively
 Run file.choose(), which directory is initiated to 
 select file?
-
-Next, change working directory
+  
+  Next, change working directory
 to the one you prefer and 
 run file.choose again 
 setwd(r"(D:\Sample_Templates\ML_Code_Python)")
@@ -227,7 +238,7 @@ files which randomly define names and file extentions
 Files should be created in Dummy_Dir
 
 file.create( paste("Dummy_Dir/","File",sample(c("delete","keep","modify"),
-                                               20,replace=TRUE),
+                                              20,replace=TRUE),
                    sample(1:20,20,replace=FALSE),
                    sample(c(".txt",".csv",".xlsx"),20,replace=TRUE),
                    sep="_")   )
@@ -473,7 +484,7 @@ file.copy("Dummy_Copy.xlsx","Dymmy_Dir/Dummy_Copy.xlsx")
 USe file.copy() to copy file from working directory to folder outside working 
 directory, rememberworking directory
 file.copy("Dummy_Copy.xlsx",
-           "D:/Sample_Templates/ML_Code_Python/Dummy_Copy.xlsx")
+          "D:/Sample_Templates/ML_Code_Python/Dummy_Copy.xlsx")
 
 #33
 Use file.copy() to copy file from non working directory to 
