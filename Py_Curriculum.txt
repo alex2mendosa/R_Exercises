@@ -1,3 +1,23 @@
+
+This course will provide a gentle, yet intense, introduction to
+programming using Python for highly motivated students with
+little or no prior experience in programming.
+The course will focus on planning and organizing programs, 
+as well as the grammar of the Python programming language.
+
+Python is one of the languages that is witnessing incredible growth 
+and popularity year by year. In 2017, Stackoverflow 
+calculated that python would beat all other 
+programming languages by 2020 as it has become the fastest-growing programming language in the world.
+
+Software Engineer
+Web Developer
+Data Scientist 
+Data Analyst 
+Financial Advisor
+
+
+
 Topic	Subsection 
 Using Python as Calculator	
 	Numeric Types
