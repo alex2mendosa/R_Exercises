@@ -1,7 +1,11 @@
+library(ggplot2)
+library(dplyr)
+library(tibble)
+
 ts1<-AirPassengers %>% as_tibble() %>%
-       mutate(Date_Full=seq.Date( as.Date("1949/1/1"),
-                                  as.Date("1960/12/1"),by="1 month"  ),
-              Cust=as.numeric(x) ) %>% select(-x)
+  mutate(Date_Full=seq.Date( as.Date("1949/1/1"),
+                             as.Date("1960/12/1"),by="1 month"  ),
+         Cust=as.numeric(x) ) %>% select(-x)
 
 
 db2<-ToothGrowth %>% as_tibble()
@@ -9,11 +13,9 @@ db2<-ToothGrowth %>% as_tibble()
 db1<-as_tibble(mtcars,rownames = NA)
 db1<-rownames_to_column(db1,var="Model")
 db1["Manufacturer"]<-sapply(strsplit(db1$Model," "),
-                               function(x) x[[1]]) 
+                            function(x) x[[1]]) 
 db1<-select(db1,Manufacturer,everything())
 
-library(ggplot2)
-library(dplyr)
 
 
 #1
@@ -56,16 +58,89 @@ ggplot(data=ts1,aes(x=Date_Full,y=Cust))+geom_line(col="red",size=1.5,linetype=4
 modify
 ggplot(data=ts1,aes(x=Date_Full,y=Cust))+geom_line(col="red",size=1.5,linetype=1)+
   scale_x_date(name="Year/Month",date_label="%Y/%m",breaks = "12 month")
-to display data from 1955
+to display data from 1955, specify limit parameter for  scale_x_date
 
 ggplot(data=ts1,aes(x=Date_Full,y=Cust))+
   geom_line(col="red",size=1.5,linetype=1)+
   scale_x_date(name="Year/Month",date_label="%Y/%m",breaks = "12 month",
-                       limits=as.Date(c("1955-1-1","1960-1-12") )    )
+               limits=as.Date(c("1955-1-1","1960-1-12") )    )
+alternatively, we can filter data in ggplot section
+
+ggplot(data= filter(ts1,Date_Full>"1955-1-1") ,aes(x=Date_Full,y=Cust))+
+  geom_line(col="red",size=1.5,linetype=1)+
+  scale_x_date(name="Year/Month",date_label="%Y/%m",breaks = "12 month" )   
+
+
+#6
+Modify 
+ggplot(data= filter(ts1,Date_Full>"1955-1-1") ,aes(x=Date_Full,y=Cust))+
+  geom_line(col="red",size=1.5,linetype=1)+
+  scale_x_date(name="Year/Month",date_label="%Y/%m",breaks = "12 month" ) 
+with scale_y_continuous() to set name of labet to "Customers,ml" and 
+10 labes 
+ggplot(data= filter(ts1,Date_Full>"1955-1-1") ,aes(x=Date_Full,y=Cust))+
+  geom_line(col="red",size=1.5,linetype=1)+
+  scale_x_date(name="Year/Month",date_label="%Y/%m",breaks = "12 month" ) +
+  scale_y_continuous(name="Customers,ml",n.breaks = 10  )
+
+
+#7
+Modify 
+ggplot(data= filter(ts1,Date_Full>"1955-1-1") ,aes(x=Date_Full,y=Cust))+
+  geom_line(col="red",size=1.5,linetype=1)+
+  scale_x_date(name="Year/Month",date_label="%Y/%m",breaks = "12 month" ) +
+  scale_y_continuous(name="Customers,ml",n.breaks = 10  )
+to add title to plot, "Monthly Airline Passenger Numbers",
+and subtitles "1949-1960"
+
+ggplot(data= filter(ts1,Date_Full>"1955-1-1") ,aes(x=Date_Full,y=Cust))+
+  geom_line(col="red",size=1.5,linetype=1)+
+  scale_x_date(name="Year/Month",date_label="%Y/%m",breaks = "12 month" ) +
+  scale_y_continuous(name="Customers,ml",n.breaks = 10  )+
+  ggtitle("Monthly Airline Passenger Numbers",subtitle = "1949-1960")
 
 
 
+#8
+we modity ts1 with synthetic additional time line
+ts2<-ts1 %>% mutate(Dummy=Cust*(1+sample(seq(0,0.15,by=0.01),1) ))
 
+Modify
+ggplot(data= filter(ts2,Date_Full>"1955-1-1") ,aes(x=Date_Full,y=Cust))+
+  geom_line(col="red",size=1.5,linetype=1)+
+  scale_x_date(name="Year/Month",date_label="%Y/%m",breaks = "12 month" ) +
+  scale_y_continuous(name="Customers,ml",n.breaks = 10  )+
+  ggtitle("Monthly Airline Passenger Numbers",subtitle = "1949-1960")
+
+To add second line of color blue and width equal to 1.5
+ggplot(data= filter(ts2,Date_Full>"1955-1-1") ,aes(x=Date_Full,y=Cust))+
+  geom_line(col="red",size=1.5,linetype=1)+
+  geom_line(aes(y=Dummy),color="blue",size=1.5)+
+  scale_x_date(name="Year/Month",date_label="%Y/%m",breaks = "12 month" ) +
+  scale_y_continuous(name="Customers,ml",n.breaks = 10  )+
+  ggtitle("Monthly Airline Passenger Numbers",subtitle = "1949-1960")
+
+geom_line(aes(y=Dummy) inherits x labels and we are able to plot 2 lines
+
+
+#9
+ts2<-ts1 %>% mutate(Dummy=Cust*(1+sample(seq(0,0.15,by=0.01),1) ))
+
+odify wtih geom_vline() to add verical lines to dates
+"1956-01-01" "1958-10-01" "1959-12-01"    
+first identify indices of respective values in 
+loc<-which(as.character(ts2$Date_Full) %in% c("1956-01-01","1958-10-01","1959-12-01"))
+
+ggplot(data= filter(ts2,Date_Full>"1955-1-1") ,aes(x=Date_Full,y=Cust))+
+  geom_line(col="red",size=1.5,linetype=1)+
+  geom_line(aes(y=Dummy),color="blue",size=1.5)+
+  scale_x_date(name="Year/Month",date_label="%Y/%m",breaks = "12 month" ) +
+  scale_y_continuous(name="Customers,ml",n.breaks = 10  )+
+  ggtitle("Monthly Airline Passenger Numbers",subtitle = "1949-1960")+
+  geom_vline( xintercept = as.numeric(ts2$Date_Full[loc]),colour = "red",linetype = "dashed"  )
+
+when dealing with axis x with dates, we need to convert
+xintercept arguments to numeric
 
 
 
