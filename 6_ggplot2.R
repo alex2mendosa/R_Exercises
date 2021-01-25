@@ -121,28 +121,127 @@ ggplot(data= filter(ts2,Date_Full>"1955-1-1") ,aes(x=Date_Full,y=Cust))+
   ggtitle("Monthly Airline Passenger Numbers",subtitle = "1949-1960")
 
 geom_line(aes(y=Dummy) inherits x labels and we are able to plot 2 lines
-
-
+          
+          
 #9
-ts2<-ts1 %>% mutate(Dummy=Cust*(1+sample(seq(0,0.15,by=0.01),1) ))
-
+    ts2<-ts1 %>% mutate(Dummy=Cust*(1+sample(seq(0,0.15,by=0.01),1) ))
+          
+          
 odify wtih geom_vline() to add verical lines to dates
-"1956-01-01" "1958-10-01" "1959-12-01"    
-first identify indices of respective values in 
-loc<-which(as.character(ts2$Date_Full) %in% c("1956-01-01","1958-10-01","1959-12-01"))
-
+  "1956-01-01" "1958-10-01" "1959-12-01"    
+  first identify indices of respective values in 
+  loc<-which(as.character(ts2$Date_Full) %in% c("1956-01-01","1958-10-01","1959-12-01"))
+          
 ggplot(data= filter(ts2,Date_Full>"1955-1-1") ,aes(x=Date_Full,y=Cust))+
   geom_line(col="red",size=1.5,linetype=1)+
   geom_line(aes(y=Dummy),color="blue",size=1.5)+
   scale_x_date(name="Year/Month",date_label="%Y/%m",breaks = "12 month" ) +
   scale_y_continuous(name="Customers,ml",n.breaks = 10  )+
   ggtitle("Monthly Airline Passenger Numbers",subtitle = "1949-1960")+
-  geom_vline( xintercept = as.numeric(ts2$Date_Full[loc]),colour = "red",linetype = "dashed"  )
+geom_vline( xintercept = as.numeric(ts2$Date_Full[loc]),colour = "red",linetype = "dashed"  )
+          
+    when dealing with axis x with dates, we need to convert
+    xintercept arguments to numeric
+          
+          
+#10    
+Use geom_point() to illustate relation between mpg and hp, 
+where hp is on the x axis
+Set color of poins to red and size of point to 5
+Use ggtitle to set name of plot to "hp VS mpg"
 
-when dealing with axis x with dates, we need to convert
-xintercept arguments to numeric
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(col="red",cex=5)+
+  ggtitle("hp VS mpg")
+    
+
+
+#11
+Modify 
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(col="red",cex=5)+
+  ggtitle("hp VS mpg") 
+to set numer of labales on x and y  axis to 10, use scale_x_continuous,
+also set axis names to upper case
+    
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(col="red",cex=5)+
+  ggtitle("hp VS mpg") + scale_x_continuous(name="HP",n.breaks = 10) +
+  scale_y_continuous(name="MPG",n.breaks = 10)
+    
+    
+#12
+modify aes argument in  geom_point() to relate color of point 
+to car manufacturer
+    
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(cex=5,aes(col=Manufacturer))+
+  ggtitle("hp VS mpg") + scale_x_continuous(name="HP",n.breaks = 10) +
+  scale_y_continuous(name="MPG",n.breaks = 10)    
+
+#13
+Modify 
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(cex=5,aes(col=Manufacturer))+
+  ggtitle("hp VS mpg") + scale_x_continuous(name="HP",n.breaks = 10) +
+  scale_y_continuous(name="MPG",n.breaks = 10)    
+
+to display only Mercedes and Mazda and Hornet
+ggplot(data= filter(db1,Manufacturer %in% c("Mazda","Merc","Hornet") ) ,aes(x=hp,y=mpg)) + 
+  geom_point(cex=5,aes(col=Manufacturer))+
+  ggtitle("hp VS mpg") + scale_x_continuous(name="HP",n.breaks = 10) +
+  scale_y_continuous(name="MPG",n.breaks = 10)   
+
+
+#14
+Modify 
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(cex=5,aes(col=Manufacturer))+
+  ggtitle("hp VS mpg") + scale_x_continuous(name="HP",n.breaks = 10) +
+  scale_y_continuous(name="MPG",n.breaks = 10)   
+to add color only for Mercedes
+
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(cex=5)+
+geom_point(data=filter(db1,Manufacturer=="Merc"),aes(x=hp,y=mpg,col=Manufacturer),cex=5)+
+ggtitle("hp VS mpg") + scale_x_continuous(name="HP",n.breaks = 10) +
+scale_y_continuous(name="MPG",n.breaks = 10)+ labs(fill = "Dose (mg)")
+
+#15
+creta graph geom_point() to relate size of point to 
+hp values, set color of all points  to green
+
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(aes(size=hp),color="green")+
+  ggtitle("hp VS mpg") + scale_x_continuous(name="HP",n.breaks = 10) +
+  scale_y_continuous(name="MPG",n.breaks = 10)    
+
+
+#16
+Modify
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(aes(size=hp),color="blue")+
+  ggtitle("hp VS mpg") + scale_x_continuous(name="HP",n.breaks = 10) +
+  scale_y_continuous(name="MPG",n.breaks = 10)  to 
+add geom_smooth which fitl Simple lenear regression to data
+
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(aes(size=hp),color="blue")+
+  ggtitle("hp VS mpg") + scale_x_continuous(name="HP",n.breaks = 10) +
+  scale_y_continuous(name="MPG",n.breaks = 10) +
+  geom_smooth(method="lm",col="red")
+
+
+#17
+Modify
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(aes(size=hp),color="blue")+
+  ggtitle("hp VS mpg") + scale_x_continuous(name="HP",n.breaks = 10) +
+  scale_y_continuous(name="MPG",n.breaks = 10)  to 
+add geom_smooth which fitl Lowess to data, remove Confidence
+interval from fitted line
+
+ggplot(data=db1,aes(x=hp,y=mpg)) + geom_point(aes(size=hp),color="blue")+
+  ggtitle("hp VS mpg") + scale_x_continuous(name="HP",n.breaks = 10) +
+  scale_y_continuous(name="MPG",n.breaks = 10) +
+  geom_smooth(method="loess",se=FALSE,col="red",cex=2)
 
 
 
 
 
+
+
+          
+          
+          
+          
